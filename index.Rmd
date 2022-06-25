@@ -2,7 +2,7 @@
 title: " Introduction to R" 
 output:
   xaringan::moon_reader:
-    self_contained: false # SET TO TRUE!!!
+    self_contained: false
     css: xaringan-themer.css
     lib_dir: libs
     seal: false
@@ -421,7 +421,7 @@ background-size: 35%
 
 ## Exercise 1: Basic introduction
 
-Work on _exercise-intro.Rmd_ file ADD LINK! 
+Work on [_exercise-section-1.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-1.Rmd) ... 
 
 ---
 
@@ -665,7 +665,7 @@ background-size: 50%
 
 ## Exercise 2: Basic stats
 
-Work on _exercise-stats.Rmd_ file
+Work on [_exercise-section-2.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-2.Rmd) ...
 
 ---
 
@@ -930,6 +930,17 @@ lines(density(adelie), col = "#ff8200")
 ```
 ]
 
+---
+
+class: inverse, left, bottom, clear, nonum
+
+background-image: url("img/data-viz.png")
+background-position: 50% 25%
+background-size: 50%
+
+## Exercise 3: Data vizualisation
+
+Work on [_exercise-section-3.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-3.Rmd) ...
 
 ---
 
