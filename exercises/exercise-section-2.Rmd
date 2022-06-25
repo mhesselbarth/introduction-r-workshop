@@ -1,0 +1,78 @@
+---
+title: "Data wrangling and stats"
+author: "Maximilian H.K. Hesselbarth"
+date: "2022-06-30 / 2022-07-01"
+output:
+  html_document:
+    theme: cosmo
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First, load all the packages you want to use. This includes `dplyr`
+
+```{r libs, message = FALSE, warning = FALSE}
+
+# Add code here
+
+```
+
+First, import the _penguins_raw.csv_ data and save it into an object. Use a text editor to check out the column separator and header information of the columns. If you want, try out to convert the _data.frame_ as a _tibble_ using `as_tibble()` from the _tibble_ packages. A _tibble_ is just a "fancy" _data.frame_, but basically the same thing.
+
+```{r read_table}
+
+# Add code here
+
+```
+
+Next, create three new columns in which you convert the culmen length, culmen depth and flipper length from mm to inch. 
+
+```{r convert_col}
+
+# Add code here
+
+```
+
+Now, create new _data.frame_ in which only individuals with a body mass above the third quantile of all body masses are include. 
+
+```{r quantile_filter}
+
+# Add code here
+
+```
+
+Next, calculate at least three descriptive statistics (e.g., mean, min, max, median, quantiles) of the flipper length. Try to calculate them for the whole data set, but also separated by species. 
+
+```{r descriptive}
+
+# Add code here
+
+```
+
+Look at the flipper length (in mm or inch) and test if there is a difference between between the different species.
+
+```{r post_hoc}
+
+# Add code here
+
+```
+
+Pick one species and create a new _data.frame_ containing only the species you selected. Continuous with this sub-selection for the rest of this exercise.
+
+```{r t_test}
+
+# Add code here
+
+```
+
+Last, pick two numeric columns of your choice and try to fit a linear regression model to the data. Is the relationship significant and what do the coefficients mean?
+
+```{r lm}
+
+# Add code here
+
+```

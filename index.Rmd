@@ -90,7 +90,7 @@ knitr::include_graphics("img/first-then.png")
 
 class: center, middle, nonum
 
-## All slides available at [ADD LINK](https://www.google.com)
+## All slides available at [https://mhesselbarth.github.io/introduction-r-workshop/](https://mhesselbarth.github.io/introduction-r-workshop/)
 
 ---
 
