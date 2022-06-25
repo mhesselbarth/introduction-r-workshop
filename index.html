@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: inverse, center, middle, nonum
+
+.pull-left[
+# Introduction to _R_
+
+## Maximilian H.K. Hesselbarth
+
+### University of Michigan (EEB)
+
+2022-06-30 / 2022-07-01 
+]
+
+.pull-right[
+&lt;img src="img/first-then.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+.ref[Artwork by @allison_horst]
+]
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt; [mhessel@umich.edu](mailto:mhessel@umich.edu) &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"&gt;&lt;/path&gt;&lt;/svg&gt; [www.maxhesselbarth.com](https://www.maxhesselbarth.com) &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@MHKHesselbarth](https://twitter.com/MHKHesselbarth)
+
+---
+
+class: center, middle, nonum
+
+## All slides available at [ADD LINK](https://www.google.com)
+
+---
+
+# About myself
+
+.pull-left[
+&lt;img src="img/hex-logos.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- Member of the [Coastal Ecology and Conservation Lab](https://www.jacoballgeier.com)
+
+- Working on **individual-based simulation models**, but also interested in **landscape ecology**, **point pattern analysis** and spatial data
+
+- Maintainer of several _R_ packages: _landscapemetrics_ .ref[(Hesselbarth et al. 2019)], _shar_ .ref[(Hesselbarth 2021)], _arrR_ .ref[(Esquivel et al. 2022)] and others
+]
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+## Section 1: Basic introduction
+
+---
+
+class: middle
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
+# _R_ programming language
+
+- Widely used programming language for **statistical analysis**, **data science** and much more
+
+- [_R_](https://www.r-project.org) is **free**, **open-source**, and **multi-platform** (Windows, macOS, Linux)
+
+- Very active and generally **friendly community** .small[(&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [#rstats](https://twitter.com/hashtag/RStats), [#rspatial](https://twitter.com/hashtag/RSpatial))]
+
+- Integration of other programming languages (e.g., `Python`, `C`, `C++`)
+
+- Very popular in ecology .ref[(Atkins et al. 2022, Hesselbarth et al. 2021, Joo et al. 2020, Lai et al. 2019)]
+
+---
+
+background-image: url("img/rstudio-logo.png")
+background-position: 95% 5%
+background-size: 15%
+
+# _RStudio_
+
+- [_RStudio_](https://www.rstudio.com) as **integrated development environment** (IDE)
+
+- **Write**, save and **run** _R_ code scripts
+
+- Includes syntax-highlighting, auto-completion, figure panel, help panel, ...
+
+&lt;img src="img/rstudio.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# _R_ as a calculator
+
+.pull-left[
+
+`+` Addition
+
+`-` Subtraction
+
+`*` Multiplication
+
+`/` Division
+
+`^` Exponentiation
+
+]
+
+.pull-right[
+
+
+```r
+14 + 5
+## [1] 19
+
+(23 - 5) / (4 * 5) ^ 2
+## [1] 0.045
+```
+
+]
+
+&lt;br&gt;
+
+`==`, `!=`, `&gt;=`, `&lt;=` Logical operators
+
+`&amp;` "and" statement
+
+`|` "or" statement
+
+---
+
+# _R_ Objects
+
+- **Store** information into objects (also called variables sometimes)
+
+- Once objects are assigned using `&lt;-` operator, they can be **reused**
+
+- Use `snake_case` or `camelCase` naming 
+
+
+```r
+# that's my age
+my_age &lt;- 31
+
+# that's the global life expectancy
+global_expectancy &lt;- 90
+
+# ...well...
+*(progress &lt;- (my_age / global_expectancy) * 100)
+## [1] 34.44444
+
+# check if I'm still below 1/2
+progress &lt;= 50
+## [1] TRUE
+```
+
+---
+
+.pull-left[
+## Data types
+- numeric : `5.34`
+
+- integer : `5L`
+
+- character : `"fish"`
+
+- logical : `TRUE`/`FALSE`
+
+- .grey[(complex : `1+4i`)]
+]
+
+.pull-right[
+## Data structures
+
+- `vector c()`
+Collection of elements/values of same type
+
+- `matrix()`
+Multi-dimensional _vector_ (rows, columns)
+
+- `data.frame()`
+Tabular data that allows different types in columns, but same number of rows
+
+- `list()`
+List of different types and/or structure (allows all of above)
+]
+
+---
+
+# Vectorization
+
+- Vectorization one major **strength** of _R_
+
+- Operations are applied to **all** elements of vector (or combinations)
+
+
+```r
+(extinct &lt;- c("amphibians" = 35, "birds" = 159, "mammals"  = 85))
+## amphibians      birds    mammals 
+##         35        159         85
+
+log(extinct)
+## amphibians      birds    mammals 
+##   3.555348   5.068904   4.442651
+
+(max_number &lt;- max(extinct))
+## [1] 159
+*extinct / max_number * 100
+## amphibians      birds    mammals 
+##   22.01258  100.00000   53.45912
+
+*extinct * log(extinct)
+## amphibians      birds    mammals 
+##   124.4372   805.9558   377.6254
+```
+
+---
+
+class: inverse, center, middle
+
+# Palmer penguins dataset
+
+&lt;img src="img/penguins.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+.ref[Horst et al. 2020]
+
+---
+
+# Indexing .tiny[(1/3)]
+
+.pull-left[
+
+```r
+# create species vector (characters)
+species &lt;- c("Adelie", "Chinstrap", "Gentoo")
+
+class(species)
+## [1] "character"
+
+# subset second object
+*species[2]
+## [1] "Chinstrap"
+
+# subset first and third object
+*species[c(1, 3)]
+## [1] "Adelie" "Gentoo"
+
+# subset everything BUT second object
+species[-2]
+## [1] "Adelie" "Gentoo"
+```
+]
+
+.pull-right[
+- Generally, indexing uses square brackets `object[element]`
+
+- **Positive** or **negative** indexing possible
+]
+
+---
+
+# Indexing .tiny[(2/3)]
+
+.pull-left[
+- For _matrices_ and _data.frames_, **two** indices are required `object[rows, cols]`
+
+- _data.frame_ columns and **named elements** can be accessed using `object$name`
+]
+
+.pull-right[
+
+```r
+class(penguins)
+## [1] "tbl_df"     "tbl"        "data.frame"
+
+# subset rows 1-5 and columns 1, 3, 8
+*penguins[1:5, c(1, 3, 8)]
+## # A tibble: 5 × 3
+##   species bill_length_mm  year
+##   &lt;fct&gt;            &lt;dbl&gt; &lt;int&gt;
+## 1 Adelie            39.1  2007
+## 2 Adelie            39.5  2007
+## 3 Adelie            40.3  2007
+## 4 Adelie            NA    2007
+## 5 Adelie            36.7  2007
+
+# subset body mass column as vector
+body_mass &lt;- penguins$body_mass_g
+```
+]
+
+---
+
+# Indexing .tiny[(3/3)]
+
+- Logical **tests** can be used to subset using `object[TRUE/FALSE vector]`
+
+- If either row or column index is empty, **all** are returned
+
+
+```r
+# subset all individuals with body mass larger than 4000
+penguins[body_mass &gt; 4000, ]
+## # A tibble: 174 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 &lt;NA&gt;    &lt;NA&gt;                NA            NA                  NA          NA
+##  2 Adelie  Torgersen           39.2          19.6               195        4675
+##  3 Adelie  Torgersen           42            20.2               190        4250
+##  4 Adelie  Torgersen           34.6          21.1               198        4400
+##  5 Adelie  Torgersen           42.5          20.7               197        4500
+##  6 Adelie  Torgersen           46            21.5               194        4200
+##  7 Adelie  Dream               39.2          21.1               196        4150
+##  8 Adelie  Dream               39.8          19.1               184        4650
+##  9 Adelie  Dream               44.1          19.7               196        4400
+## 10 Adelie  Dream               39.6          18.8               190        4600
+## # … with 164 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+---
+
+# Functions .tiny[(1/3)]
+
+.pull-left[
+- **Packages** are **collections** of functions provided by the community
+
+
+```r
+library(palmerpenguins)
+library(scales)
+```
+]
+
+.pull-right[
+
+- Block of code that takes **input** and creates **output**
+
+- Most functions take input value and often additional **arguments**
+
+- Functions are evaluated from **inside** to **outside**
+
+- Pass values by name or argument
+
+
+```r
+# standardize body mass to 0-1 scale, 
+# calculate mean, and calculate log
+log(mean(rescale(penguins$body_mass_g, 
+                 to = c(0, 1)), na.rm = TRUE))
+## [1] -0.8742998
+```
+]
+
+---
+
+# Functions .tiny[(2/3)]
+
+.pull-left[
+- Use e.g., `?mean` to open **documentation** for help
+
+- Very powerful resource to understand functions
+]
+
+.pull-right[
+&lt;img src="img/help-page.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+# Functions .tiny[(3/3)]
+
+- Very easy to create **own** functions using `fun_name &lt;- function(arg1, arg2,...){body}`
+
+- _R_ always returns the **last line** or explicit `return()` statement.
+
+
+```r
+calc_area &lt;- function(x, y, total = FALSE, na.rm = TRUE){
+  
+  # multiply length * width
+  area &lt;- x * y
+  
+  # calculate sum of all values
+  if (total) {
+*   area &lt;- sum(area, na.rm = na.rm)
+  }
+  
+* return(area)
+}
+
+head(calc_area(penguins$bill_length_mm, penguins$bill_depth_mm))
+## [1] 731.17 687.30 725.40     NA 708.31 809.58
+
+calc_area(penguins$bill_length_mm, penguins$bill_depth_mm, total = TRUE)
+## [1] 256768.7
+```
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+background-image: url("img/meme-google.png")
+background-position: 50% 25%
+background-size: 35%
+
+## Exercise 1: Basic introduction
+
+Work on _exercise-intro.Rmd_ file
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+## Section 2: Data wrangling and some stats
+
+---
+
+# Importing data
+
+- `read.table()` to import tabular **text files** (e.g., _file.csv_)
+
+- _readxl_ packages to import **Excel** files
+
+
+```r
+# import tabular text data file (most robust)
+penguins_csv &lt;- read.table(file = "data/penguins.csv", 
+*                          header = TRUE, sep = ",")
+
+# read MS Excel file
+penguins_excel &lt;- readxl::read_xlsx(path = "data/penguins.xlsx", sheet = "clean", 
+                                    col_types = c("text", "text", "numeric", "numeric",
+                                                  "numeric", "numeric", "guess", "guess"))
+
+head(penguins_excel, n = 3)
+## # A tibble: 3 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## # … with 1 more variable: year &lt;dbl&gt;
+```
+
+---
+
+# Modify _data.frames_
+
+.pull-left[
+- **Modify** or **add** _data.frame_ columns by assigning values
+]
+
+.pull-right[
+
+```r
+# remove all rows that have NA value
+head(complete.cases(penguins))
+## [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+
+penguins &lt;- penguins[complete.cases(penguins), ]
+
+# modify existing columns
+*penguins$year &lt;- factor(penguins$year)
+
+# create new columns
+penguins$body_mass_kg &lt;- penguins$body_mass_g / 10000
+
+penguins$bill_area &lt;- penguins$bill_length_mm * 
+  penguins$bill_depth_mm
+
+penguins$rand &lt;- runif(n = nrow(penguins))
+```
+]
+
+---
+
+background-image: url("img/dplyr.png")
+background-position: 95% 5%
+background-size: 10%
+
+# _dplyr_ package .tiny[(1/3)]
+
+.pull-left[
+
+```r
+# filter by sex and body mass
+*dplyr::filter(penguins, sex == "female",
+*             body_mass_kg &gt; 0.5) %&gt;%
+  # return only selected columns
+  dplyr::select(species, sex, body_mass_kg)
+## # A tibble: 5 × 3
+##   species sex    body_mass_kg
+##   &lt;fct&gt;   &lt;fct&gt;         &lt;dbl&gt;
+## 1 Gentoo  female        0.505
+## 2 Gentoo  female        0.515
+## 3 Gentoo  female        0.51 
+## 4 Gentoo  female        0.52 
+## 5 Gentoo  female        0.52
+```
+]
+
+.pull-right[
+- Part of the larger [_tidyverse_](https://www.tidyverse.org) _R_ package collection
+
+- Many useful functions (mainly) to deal with _data.frames_
+
+- Also provides **pipe** operator, which allows to write `x %&gt;% f() %&gt;% g()` instead of `g(f(x))`
+]
+
+---
+
+background-image: url("img/dplyr.png")
+background-position: 95% 5%
+background-size: 10%
+
+# _dplyr_ package .tiny[(2/3)]
+
+- `mutate()` to modify or add _data.frame_ columns
+
+- Can be combined with `case_when()` for if-else statements
+
+
+```r
+dplyr::filter(penguins, sex == "female", body_mass_kg &gt; 0.5) %&gt;% 
+  dplyr::select(species, sex, body_mass_kg) %&gt;% 
+* dplyr::mutate(body_mass_pounds = body_mass_kg * 2.20462,
+*               body_class = dplyr::case_when(body_mass_pounds &lt; 1.125 ~ "light",
+*                                             body_mass_pounds &gt; 1.125 ~ "heavy"))
+## # A tibble: 5 × 5
+##   species sex    body_mass_kg body_mass_pounds body_class
+##   &lt;fct&gt;   &lt;fct&gt;         &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;     
+## 1 Gentoo  female        0.505             1.11 light     
+## 2 Gentoo  female        0.515             1.14 heavy     
+## 3 Gentoo  female        0.51              1.12 light     
+## 4 Gentoo  female        0.52              1.15 heavy     
+## 5 Gentoo  female        0.52              1.15 heavy
+```
+
+---
+
+background-image: url("img/dplyr.png")
+background-position: 95% 5%
+background-size: 10%
+
+# _dplyr_ package .tiny[(3/3)]
+
+.pull-left[
+- `group_by()` and `summarize()` to calculated **group values**
+]
+
+.pull-right[
+
+```r
+dplyr::group_by(penguins, species) %&gt;%
+  dplyr::summarise(n = dplyr::n(), 
+                   max_weight_g = max(body_mass_g))
+## # A tibble: 3 × 3
+##   species       n max_weight_g
+##   &lt;fct&gt;     &lt;int&gt;        &lt;int&gt;
+## 1 Adelie      146         4775
+## 2 Chinstrap    68         4800
+## 3 Gentoo      119         6300
+```
+]
+
+---
+
+# Descriptive stats
+
+- Many **descriptive** functions e.g., `min()`, `max()`, `mean()`, `sd()`, `range()`, `quantile()`, `density()`, etc.
+
+- `summary()` very powerful function that returns **different outputs** based on object
+
+
+```r
+summary(penguins[, -c(9, 10, 11)])
+##       species          island    bill_length_mm  bill_depth_mm  
+##  Adelie   :146   Biscoe   :163   Min.   :32.10   Min.   :13.10  
+##  Chinstrap: 68   Dream    :123   1st Qu.:39.50   1st Qu.:15.60  
+##  Gentoo   :119   Torgersen: 47   Median :44.50   Median :17.30  
+##                                  Mean   :43.99   Mean   :17.16  
+##                                  3rd Qu.:48.60   3rd Qu.:18.70  
+##                                  Max.   :59.60   Max.   :21.50  
+##  flipper_length_mm  body_mass_g       sex        year    
+##  Min.   :172       Min.   :2700   female:165   2007:103  
+##  1st Qu.:190       1st Qu.:3550   male  :168   2008:113  
+##  Median :197       Median :4050                2009:117  
+##  Mean   :201       Mean   :4207                          
+##  3rd Qu.:213       3rd Qu.:4775                          
+##  Max.   :231       Max.   :6300
+```
+
+---
+
+# Correlation
+
+- Calculate and test for **correlation** between two _vectors_ using `cor()`/`cor.test()`
+
+
+```r
+# calculate correlation between body mass and bill length
+*cor(x = penguins$body_mass_g, y = penguins$bill_length_mm)
+## [1] 0.5894511
+
+# correlation test using formula syntax
+cor.test(penguins$body_mass_g, penguins$bill_length_mm)
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  penguins$body_mass_g and penguins$bill_length_mm
+## t = 13.276, df = 331, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.5145745 0.6554058
+## sample estimates:
+##       cor 
+## 0.5894511
+```
+
+---
+
+# Student's t-Test
+
+- Student's t-Test to test if the **means** of two groups are **different**
+
+- Check documentation for **additional arguments** and test specifications
+
+
+```r
+# extracte body mass for male and female and run t test
+male &lt;- penguins[penguins$sex == "male", "body_mass_g", drop = TRUE]
+female &lt;- penguins[penguins$sex == "female", "body_mass_g", drop = TRUE]
+*t.test(male, female, conf.level = 0.95)
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  male and female
+## t = 8.5545, df = 323.9, p-value = 4.794e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  526.2453 840.5783
+## sample estimates:
+## mean of x mean of y 
+##  4545.685  3862.273
+
+## same but a bit more elegant use formula syntax
+*# t.test(body_mass_g ~ sex, data = penguins)
+```
+
+---
+
+### Linear regression .tiny[(1/2)]
+
+- `lm()` to fit **linear** regression model using formula syntax
+
+- `summary()` behaves different for _lm_ than for _data.frame_ object
+
+
+```r
+# fit linear model with variables bill length (dependent) and body mass (independent)
+mass_length_lm &lt;- lm(formula = bill_length_mm ~ body_mass_g, data = penguins)
+
+# get coefficients
+*summary(mass_length_lm)
+## 
+## Call:
+## lm(formula = bill_length_mm ~ body_mass_g, data = penguins)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.1652  -3.0664  -0.7672   2.2356  16.0371 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.715e+01  1.292e+00   21.02   &lt;2e-16 ***
+## body_mass_g 4.003e-03  3.016e-04   13.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.424 on 331 degrees of freedom
+## Multiple R-squared:  0.3475,	Adjusted R-squared:  0.3455 
+## F-statistic: 176.2 on 1 and 331 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+### Linear regression .tiny[(2/2)]
+
+&lt;img src="index_files/figure-html/predict_plot-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+
+```r
+bill_predictions &lt;- predict(mass_length_lm, 
+*                           newdata = data.frame(body_mass_g = seq(from = 3000, to = 6000, by = 250)))
+
+bill_predictions
+##        1        2        3        4        5        6        7        8 
+## 39.16059 40.16142 41.16224 42.16306 43.16388 44.16471 45.16553 46.16635 
+##        9       10       11       12       13 
+## 47.16717 48.16800 49.16882 50.16964 51.17046
+```
+
+---
+
+# ANOVA
+
+- ANOVA to test if independent variable(s) affect numerical dependent variable (more than 2 groups)
+
+- Use `*` instead of `+` for **interaction** term
+
+
+```r
+# test of flipper length depends on sex (2 levels) and species (3 levels)
+flipper_anova &lt;- aov(flipper_length_mm ~ sex + species, data = penguins)
+
+# check anova results
+*summary(flipper_anova)
+##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## sex           1   4246    4246   129.5 &lt;2e-16 ***
+## species       2  50185   25093   765.3 &lt;2e-16 ***
+## Residuals   329  10787      33                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# Tukey's post-hoc test
+
+- **Post-hoc test** to see difference between groups of independent variable levels 
+
+
+```r
+TukeyHSD(flipper_anova)
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = flipper_length_mm ~ sex + species, data = penguins)
+## 
+## $sex
+##                 diff      lwr      upr p adj
+## male-female 7.142316 5.907707 8.376925     0
+## 
+## $species
+##                      diff       lwr       upr p adj
+## Chinstrap-Adelie  5.72079  3.741515  7.700065     0
+## Gentoo-Adelie    27.04253 25.377568 28.707483     0
+## Gentoo-Chinstrap 21.32174 19.272353 23.371118     0
+```
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+background-image: url("img/lm.png")
+background-position: 50% 35%
+background-size: 50%
+
+## Exercise 2: Basic stats
+
+Work on _exercise-stats.Rmd_ file
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+## Section 3: Data vizualisation
+
+---
+
+# _base_ vs. _ggplot2_
+
+- _R_ has two major visualization environments, _base_ and _ggplot2_
+
+.pull-left[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="index_files/figure-html/base_plot-1.png" alt="base plot" width="80%" /&gt;
+&lt;p class="caption"&gt;base plot&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="index_files/figure-html/ggplot-1.png" alt="ggplot2" width="80%" /&gt;
+&lt;p class="caption"&gt;ggplot2&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+
+# Scatter plots .tiny[(1/3)]
+
+.pull-left[
+
+```r
+# create simple scatter plot bodymass vs bill length
+plot(x = penguins$body_mass_g, 
+     y = penguins$bill_length_mm, 
+*    type = "p", cex = 1.0, pch = 19,
+     xlab = "Body mass [g]", ylab = "Bill length [mm]")
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/scatter-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Scatter plots .tiny[(2/3)]
+
+.pull-left[
+
+```r
+# specify color palette
+color_palette &lt;- c(Chinstrap = "#c15bcb", 
+                   Gentoo = "#077476", 
+                   Adelie = "#ff8200")
+
+# make sure species factor has same order
+penguins$species &lt;- factor(penguins$species, 
+                           levels = c("Chinstrap", 
+                                      "Gentoo", 
+                                      "Adelie"))
+
+plot(x = penguins$body_mass_g, 
+     y = penguins$bill_length_mm, 
+*    col = color_palette[penguins$species],
+     type = "p", cex = 1.0, pch = 19,
+     xlab = "Body mass [g]", ylab = "Bill length [mm]")
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/scatter_color-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Scatter plots .tiny[(3/3)]
+
+.pull-left[
+
+```r
+# fit regression model (w/o species) 
+lm_ttl &lt;- lm(formula = bill_length_mm ~ body_mass_g, 
+             data = penguins)
+
+plot(x = penguins$body_mass_g, 
+     y = penguins$bill_length_mm, 
+     col = color_palette[penguins$species],
+     type = "p", cex = 1.0, pch = 19,
+     xlab = "Body mass [g]", ylab = "Bill length [mm]")
+
+# add regression line
+*abline(lm_ttl)
+
+# add legend
+legend("topleft", legend = c("Chinstrap", "Gentoo", 
+                             "Adelie"), 
+       col = color_palette, pch = 19)
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/scatter_lm-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Barplot vs. Boxplot
+
+.pull-left[
+
+```r
+df_sum &lt;- dplyr::group_by(penguins, sex) %&gt;% 
+  dplyr::summarise(mn = mean(flipper_length_mm), 
+                   sd = sd(flipper_length_mm))
+
+*p_bar &lt;- barplot(mn ~ sex, data = df_sum,
+*       ylim = c(0, 220))
+
+arrows(x0 = p_bar, y0 = df_sum$mn - df_sum$sd, 
+       x1 = p_bar, y1 = df_sum$mn + df_sum$sd, 
+       lwd = 1.5, angle = 90, code = 3)
+```
+
+&lt;img src="index_files/figure-html/barplot-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+```r
+boxplot(flipper_length_mm ~ sex, 
+        data = penguins)
+```
+
+&lt;img src="index_files/figure-html/boxplot-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+# Histogram and Density .tiny[(1/3)]
+
+.pull-left[
+
+```r
+hist(penguins$bill_length_mm, breaks = 20)
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/hist-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Histogram and Density .tiny[(2/3)]
+
+.pull-left[
+
+```r
+chinstrap &lt;- penguins$bill_length_mm[penguins$species == "Chinstrap"]
+gentoo &lt;- penguins$bill_length_mm[penguins$species == "Gentoo"]
+adelie &lt;- penguins$bill_length_mm[penguins$species == "Adelie"]
+
+hist(chinstrap, breaks = 20, col = "#c15bcb", 
+     xlim =c(30, 60), ylim = c(0, 20), 
+     xlab = "Bill length [mm]", main = "")
+
+hist(gentoo, breaks = 20, col = "#077476", 
+*    add = TRUE)
+
+hist(adelie, breaks = 20, col = "#ff8200", 
+*    add = TRUE)
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/hist_species-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Histogram and Density .tiny[(3/3)]
+
+.pull-left[
+
+```r
+*hist(chinstrap, breaks = 20, probability = TRUE,
+     border = "#c15bcb", col = NA, xlim = c(30, 60), 
+     xlab = "Bill length [mm]", main = "")
+
+hist(gentoo, breaks = 20, probability = TRUE, 
+     border = "#077476", col = NA, add = TRUE)
+
+hist(adelie, breaks = 20, probability = TRUE, 
+     border = "#ff8200", col = NA, add = TRUE)
+
+*lines(density(chinstrap), col = "#c15bcb")
+*lines(density(gentoo), col = "#077476")
+*lines(density(adelie), col = "#ff8200")
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/density-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+class: inverse, left, bottom, clear, nonum
+
+## Section 4: Some more programming...
+
+---
+
+# Loops .tiny[(1/2)]
+
+- Code is **repeated** until conditions is met
+
+- `for` and `while` loops most common
+
+- Can be useful if vectorization is not possible, but **can be slow** if used incorrectly (never grow a vector, always pre-allocate!)
+
+.pull-left[
+
+```r
+result_good &lt;- numeric(length = 5)
+result_bad &lt;- numeric()
+
+for (i in 1:5) {
+  
+  x &lt;- i * 5
+  
+* result_good[i] &lt;- x
+  result_bad &lt;- c(result_bad, x)
+  
+  print(paste0("i=", i, " // x=", x))
+}
+## [1] "i=1 // x=5"
+## [1] "i=2 // x=10"
+## [1] "i=3 // x=15"
+## [1] "i=4 // x=20"
+## [1] "i=5 // x=25"
+```
+]
+
+.pull-right[
+
+```loop_species
+for (i in c("Chinstrap", "Gentoo", "Adelie")) {
+  dplyr::filter(penguins, species == i) %&gt;% 
+    ggplot(aes(x = body_mass_g, y = flipper_length_mm)) + 
+    geom_point() + 
+    labs(title = paste("Species:", i))
+}
+```
+]
+
+---
+
+# Loops .tiny[(2/2)]
+
+- `apply()` (_matrices_) and `lapply()` (_vectors_, _data.frames_, _lists_) as alternative instead of loops
+
+
+```r
+penguins_mat &lt;- as.matrix(penguins[, 3:6])
+
+# calculate maximum of columns
+*apply(penguins_mat, 2, max)
+##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
+##              59.6              21.5             231.0            6300.0
+
+penguins_list &lt;- dplyr::group_by(penguins, island) %&gt;% 
+  dplyr::group_split()
+
+# use anonymous function to calculate cv of each island
+lapply(penguins_list, function(i){ 
+* data.frame(island = unique(i$island), cv = sd(i$body_mass_g) / mean(i$body_mass_g))})
+## [[1]]
+##   island        cv
+## 1 Biscoe 0.1675845
+## 
+## [[2]]
+##   island        cv
+## 1  Dream 0.1110369
+## 
+## [[3]]
+##      island        cv
+## 1 Torgersen 0.1218404
+```
+
+---
+
+# `ifelse` statements
+
+.pull-left[
+- Check if **logical statement** is true and run different parts of code
+
+- General form: `if(conditions) {do this} else {do that}`
+
+- Often used in _loops_ and _functions_
+
+- Vectorized `ifelse()` function available
+]
+
+.pull-right[
+
+```r
+# useing vectorized function
+*ifelse(test = penguins$body_mass_g &lt;= 3500,
+*      yes = "small", no = "large") %&gt;%
+  head()
+## [1] "large" "large" "small" "small" "large" "large"
+
+# using loop and classic if else statement
+class &lt;- vector(mode = "character", length = nrow(penguins))
+
+for (i in 1:nrow(penguins)) {
+  
+  # if body mass above 10000 something is probably wrong
+  if (penguins[i, "body_mass_g"] &gt; 10000) stop("Too big?")
+  
+  # classify based on threshold
+* if (penguins[i, "body_mass_g"] &lt;= 3500) {
+    class[i] &lt;- "small"
+* } else {
+     class[i] &lt;- "large"
+  }
+}
+
+head(class)
+## [1] "large" "large" "small" "small" "large" "large"
+```
+]
+
+---
+
+class: right
+
+# Resources
+
+[_R_ for Data Science](https://r4ds.had.co.nz)
+
+[Advanced _R_](https://adv-r.hadley.nz)
+
+[Efficient _R_ programming](https://csgillespie.github.io/efficientR/)
+
+[What They Forgot to Teach You About _R_](https://rstats.wtf/index.html)
+
+[Big Book of _R_](https://www.bigbookofr.com/index.html)
+
+[Modern Statistics for Modern Biology](https://www-huber.embl.de/msmb/index.html)
+
+[Modern Statistics with R](http://www.modernstatisticswithr.com)
+
+[Introduction to Modern Statistics](https://openintro-ims.netlify.app)
+
+[ggplot2](https://ggplot2-book.org/index.html)
+
+---
+
+class: middle
+
+# References
+
+.tiny[
+Atkins, J.W., Stovall, A.E.L., Alberto Silva, C., 2022. _Open-Source tools in R for forestry and forest ecology._ Forest Ecology and Management 503, 119813. https://doi.org/10.1016/j.foreco.2021.119813
+
+Esquivel, K.E., Hesselbarth, M.H.K., Allgeier, J.E., 2022. _Mechanistic support for increased primary production around artificial reefs._ Ecological Applications e2617. https://doi.org/10.1002/eap.2617
+
+Hesselbarth, M.H.K., Sciaini, M., With, K.A., Wiegand, K., Nowosad, J., 2019. _landscapemetrics: An open‐source R tool to calculate landscape metrics._ Ecography 42, 1648–1657. https://doi.org/10.1111/ecog.04617
+
+Hesselbarth, M.H.K., 2021. _shar: An R package to analyze species-habitat associations using point pattern analysis._ Journal of Open Source Software 6, 3811. https://doi.org/10.21105/joss.03811
+
+Hesselbarth, M.H.K., Nowosad, J., Signer, J., Graham, L.J., 2021. _Open-source tools in R for landscape ecology._ Current Landscape Ecology Reports 6, 97–111. https://doi.org/10.1007/s40823-021-00067-y
+
+Horst A.M., Hill A.P., Gorman K.B., 2020. _palmerpenguins: Palmer Archipelago (Antarctica) penguin data._ R package version 0.1.0.
+
+Joo, R., Boone, M.E., Clay, T.A., Patrick, S.C., Clusella‐Trullas, S., Basille, M., 2020. _Navigating through the R packages for movement._ Journal of Animal Ecology 89, 248–267. https://doi.org/10.1111/1365-2656.13116
+
+Lai, J., Lortie, C.J., Muenchen, R.A., Yang, J., Ma, K., 2019. _Evaluating the popularity of R in ecology._ Ecosphere 10. https://doi.org/10.1002/ecs2.2567
+]
+
+---
+
+class: inverse, center, middle, nonum
+
+## Thank you for your attention. 
+
+### Questions?
+
+&lt;br&gt;
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt; [mhessel@umich.edu](mailto:mhessel@umich.edu) &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"&gt;&lt;/path&gt;&lt;/svg&gt; [www.maxhesselbarth.com](https://www.maxhesselbarth.com) &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@MHKHesselbarth](https://twitter.com/MHKHesselbarth)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:10",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
