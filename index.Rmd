@@ -69,9 +69,9 @@ class: inverse, center, middle, nonum
 .pull-left[
 # Introduction to _R_
 
-## Maximilian H.K. Hesselbarth
+### Maximilian H.K. Hesselbarth
 
-### University of Michigan (EEB)
+#### University of Michigan (EEB)
 
 2022-06-30 / 2022-07-01 
 ]
@@ -90,7 +90,7 @@ knitr::include_graphics("img/first-then.png")
 
 class: center, middle, nonum
 
-## All slides available at [https://mhesselbarth.github.io/introduction-r-workshop/](https://mhesselbarth.github.io/introduction-r-workshop/)
+All slides available at: [https://mhesselbarth.github.io/introduction-r-workshop/](https://mhesselbarth.github.io/introduction-r-workshop/)
 
 ---
 
@@ -105,9 +105,9 @@ knitr::include_graphics("img/hex-logos.png")
 .pull-right[
 - Member of the [Coastal Ecology and Conservation Lab](https://www.jacoballgeier.com)
 
-- Working on **individual-based simulation models**, but also interested in **landscape ecology**, **point pattern analysis** and spatial data
+- Working on **individual-based simulation modelling**, **landscape ecology**, **point pattern analysis** and spatial data in general
 
-- Maintainer of several _R_ packages: _landscapemetrics_ .ref[(Hesselbarth et al. 2019)], _shar_ .ref[(Hesselbarth 2021)], _arrR_ .ref[(Esquivel et al. 2022)] and others
+- Author/Contributor of several _R_ packages: _landscapemetrics_ .ref[(Hesselbarth et al. 2019)], _shar_ .ref[(Hesselbarth 2021)], _arrR_ .ref[(Esquivel et al. 2022)] and others
 ]
 
 ---
@@ -118,22 +118,35 @@ class: inverse, left, bottom, clear, nonum
 
 ---
 
-class: middle
 background-image: url("img/r-logo.png")
 background-position: 95% 5%
 background-size: 10%
 
 # _R_ programming language
 
+--
+
 - Widely used programming language for **statistical analysis**, **data science** and much more
 
-- [_R_](https://www.r-project.org) is **free**, **open-source**, and **multi-platform** (Windows, macOS, Linux)
+--
+
+- [_R_](https://www.r-project.org) is **free**, **open-source**, and **multi-platform** (_Windows_, _macOS_, _Linux_)
+
+--
+
+- Allows open, reproducible, and transparent research 
+
+--
 
 - Very active and generally **friendly community** .small[(`r icons::fontawesome("twitter")` [#rstats](https://twitter.com/hashtag/RStats), [#rspatial](https://twitter.com/hashtag/RSpatial))]
 
-- Integration of other programming languages (e.g., `Python`, `C`, `C++`)
+--
 
 - Very popular in ecology .ref[(Atkins et al. 2022, Hesselbarth et al. 2021, Joo et al. 2020, Lai et al. 2019)]
+
+--
+
+- Integration of other programming languages (e.g., `Python`, `C`, `C++`)
 
 ---
 
@@ -143,22 +156,34 @@ background-size: 15%
 
 # _RStudio_
 
+--
+
 - [_RStudio_](https://www.rstudio.com) as **integrated development environment** (IDE)
+
+--
 
 - **Write**, save and **run** _R_ code scripts
 
-- Includes syntax-highlighting, auto-completion, figure panel, help panel, ...
+--
+
+- Includes syntax-highlighting, auto-completion, figure and help panels, ...
 
 ```{r rstudio, echo=FALSE, fig.align='center', out.width='60%'}
 knitr::include_graphics("img/rstudio.png")
 ```
 
+
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # _R_ as a calculator
 
-.pull-left[
+--
 
+.pull-left[
 `+` Addition
 
 `-` Subtraction
@@ -168,18 +193,23 @@ knitr::include_graphics("img/rstudio.png")
 `/` Division
 
 `^` Exponentiation
-
 ]
 
-.pull-right[
+--
 
+.pull-right[
 ```{r calc}
+# add two numbers
 14 + 5
 
+# combination of different operators
 (23 - 5) / (4 * 5) ^ 2
 ```
 
+`#` for comments in code
 ]
+
+--
 
 <br>
 
@@ -191,13 +221,25 @@ knitr::include_graphics("img/rstudio.png")
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # _R_ Objects
+
+--
 
 - **Store** information into objects (also called variables sometimes)
 
-- Once objects are assigned using `<-` operator, they can be **reused**
+--
+
+- Once objects are assigned using the `<-` operator, they can be **reused**
+
+--
 
 - Use `snake_case` or `camelCase` naming 
+
+--
 
 ```{r objects}
 # that's my age
@@ -215,6 +257,12 @@ progress <= 50
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
+--
+
 .pull-left[
 ## Data types
 - numeric : `5.34`
@@ -227,6 +275,8 @@ progress <= 50
 
 - .grey[(complex : `1+4i`)]
 ]
+
+--
 
 .pull-right[
 ## Data structures
@@ -241,27 +291,43 @@ Multi-dimensional _vector_ (rows, columns)
 Tabular data that allows different types in columns, but same number of rows
 
 - `list()`
-List of different types and/or structure (allows all of above)
+List of different types and/or structures (allows all of above)
 ]
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Vectorization
+
+--
 
 - Vectorization one major **strength** of _R_
 
+--
+
 - Operations are applied to **all** elements of vector (or combinations)
 
-```{r vectorization}
-(extinct <- c("amphibians" = 35, "birds" = 159, "mammals"  = 85))
+--
 
+```{r vectorization}
+# create named vector with extinction numbers
+extinct <- c("amphibians" = 35, "birds" = 159, "fish" = 80, "mammals"  = 85)
+
+# log of all values
 log(extinct)
 
+# calc relative number in relation to maximum
 (max_number <- max(extinct))
 extinct / max_number * 100 #<<
 
+# multiply all values with log values
 extinct * log(extinct) #<<
 ```
+
+.ref[Source: https://ourworldindata.org/extinctions]
 
 ---
 
@@ -276,6 +342,10 @@ knitr::include_graphics("img/penguins.png")
 .ref[Horst et al. 2020]
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Indexing .tiny[(1/3)]
 
@@ -293,7 +363,7 @@ species[2] #<<
 species[c(1, 3)] #<<
 
 # subset everything BUT second object
-species[-2]
+species[-2] #<<
 ```
 ]
 
@@ -304,6 +374,10 @@ species[-2]
 ]
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Indexing .tiny[(2/3)]
 
@@ -327,22 +401,34 @@ body_mass <- penguins$body_mass_g
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Indexing .tiny[(3/3)]
 
-- Logical **tests** can be used to subset using `object[TRUE/FALSE vector]`
+- Logical **tests** can be used to subset using `object[TRUE/FALSE-vector]`
 
 - If either row or column index is empty, **all** are returned
 
 ```{r index_logical}
 # subset all individuals with body mass larger than 4000
-penguins[body_mass > 4000, ]
+penguins[penguins$body_mass_g > 4000, ] #<<
 ```
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Functions .tiny[(1/3)]
 
+--
+
 .pull-left[
+- Block of code that takes **input** and creates **output**
+
 - **Packages** are **collections** of functions provided by the community
 
 ```{r libs}
@@ -351,10 +437,9 @@ library(scales)
 ```
 ]
 
+--
+
 .pull-right[
-
-- Block of code that takes **input** and creates **output**
-
 - Most functions take input value and often additional **arguments**
 
 - Functions are evaluated from **inside** to **outside**
@@ -364,19 +449,25 @@ library(scales)
 ```{r functions}
 # standardize body mass to 0-1 scale, 
 # calculate mean, and calculate log
-log(mean(rescale(penguins$body_mass_g, 
-                 to = c(0, 1)), na.rm = TRUE))
+log(mean(rescale(body_mass, to = c(0, 1)), na.rm = TRUE))
+
+head(rescale(body_mass, to = c(1, 2)))
+head(rescale(body_mass, c(1, 2)))
 ```
 ]
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Functions .tiny[(2/3)]
 
 .pull-left[
 - Use e.g., `?mean` to open **documentation** for help
 
-- Very powerful resource to understand functions
+- Very **powerful resource** to understand and apply functions
 ]
 
 .pull-right[
@@ -384,16 +475,27 @@ log(mean(rescale(penguins$body_mass_g,
 knitr::include_graphics("img/help-page.png")
 ```
 ]
+
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Functions .tiny[(3/3)]
 
+--
+
 - Very easy to create **own** functions using `fun_name <- function(arg1, arg2,...){body}`
+
+--
 
 - _R_ always returns the **last line** or explicit `return()` statement.
 
+--
+
 ```{r own_function}
-calc_area <- function(x, y, total = FALSE, na.rm = TRUE){
+calc_area <- function(x, y, total = FALSE, na.rm = TRUE){ #<<
   
   # multiply length * width
   area <- x * y
@@ -421,7 +523,7 @@ background-size: 35%
 
 ## Exercise 1: Basic introduction
 
-Work on [_exercise-section-1.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-1.Rmd) ... 
+... work on [_exercise-section-1.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-1.Rmd) ... 
 
 ---
 
@@ -431,11 +533,21 @@ class: inverse, left, bottom, clear, nonum
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Importing data
+
+--
 
 - `read.table()` to import tabular **text files** (e.g., _file.csv_)
 
+--
+
 - _readxl_ packages to import **Excel** files
+
+--
 
 ```{r read_data, warning = FALSE, message = FALSE}
 # import tabular text data file (most robust)
@@ -452,6 +564,10 @@ head(penguins_excel, n = 3)
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Modify _data.frames_
 
 .pull-left[
@@ -462,18 +578,19 @@ head(penguins_excel, n = 3)
 ```{r data.frame}
 # remove all rows that have NA value
 head(complete.cases(penguins))
-
 penguins <- penguins[complete.cases(penguins), ]
 
 # modify existing columns
 penguins$year <- factor(penguins$year) #<<
 
-# create new columns
-penguins$body_mass_kg <- penguins$body_mass_g / 10000
+# create new columns based on existing ones
+penguins$body_mass_kg <- penguins$body_mass_g / 
+  10000
 
 penguins$bill_area <- penguins$bill_length_mm * 
   penguins$bill_depth_mm
 
+# completely new
 penguins$rand <- runif(n = nrow(penguins))
 ```
 ]
@@ -486,22 +603,28 @@ background-size: 10%
 
 # _dplyr_ package .tiny[(1/3)]
 
+--
+
 .pull-left[
+- Part of the larger [_tidyverse_](https://www.tidyverse.org) _R_ package collection
+
+- Many useful functions (mostly) to deal with _data.frames_
+
+- Also provides **pipe** operator, which allows to write `x %>% f() %>% g()` instead of `g(f(x))`
+]
+
+--
+
+.pull-right[
 ```{r dplyr_filter}
 # filter by sex and body mass
 dplyr::filter(penguins, sex == "female", #<<
               body_mass_kg > 0.5) %>% #<<
   # return only selected columns
-  dplyr::select(species, sex, body_mass_kg)
+  dplyr::select(species, sex, body_mass_kg) %>% 
+  # show last 5 rows
+  tail(n = 5)
 ```
-]
-
-.pull-right[
-- Part of the larger [_tidyverse_](https://www.tidyverse.org) _R_ package collection
-
-- Many useful functions (mainly) to deal with _data.frames_
-
-- Also provides **pipe** operator, which allows to write `x %>% f() %>% g()` instead of `g(f(x))`
 ]
 
 ---
@@ -512,9 +635,15 @@ background-size: 10%
 
 # _dplyr_ package .tiny[(2/3)]
 
+--
+
 - `mutate()` to modify or add _data.frame_ columns
 
+--
+
 - Can be combined with `case_when()` for if-else statements
+
+--
 
 ```{r dplyr_mutate}
 dplyr::filter(penguins, sex == "female", body_mass_kg > 0.5) %>% 
@@ -540,23 +669,37 @@ background-size: 10%
 ```{r dplyr_group}
 dplyr::group_by(penguins, species) %>%
   dplyr::summarise(n = dplyr::n(), 
-                   max_weight_g = max(body_mass_g))
+                   max_g = max(body_mass_g))
 ```
 ]
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Descriptive stats
 
-- Many **descriptive** functions e.g., `min()`, `max()`, `mean()`, `sd()`, `range()`, `quantile()`, `density()`, etc.
+--
+
+- Many **descriptive** stats e.g., `min()`, `max()`, `mean()`, `sd()`, `range()`, `quantile()`, `density()`, etc.
+
+--
 
 - `summary()` very powerful function that returns **different outputs** based on object
+
+--
 
 ```{r descreptive}
 summary(penguins[, -c(9, 10, 11)])
 ```
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Correlation
 
@@ -567,54 +710,74 @@ summary(penguins[, -c(9, 10, 11)])
 cor(x = penguins$body_mass_g, y = penguins$bill_length_mm) #<<
 
 # correlation test using formula syntax
-cor.test(penguins$body_mass_g, penguins$bill_length_mm)
+cor.test(penguins$body_mass_g, penguins$bill_length_mm) #<<
 ```
 
 ---
 
-# Assumptions
-
-Model assumptions
-
----
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Student's t-Test
 
+--
+
 - Student's t-Test to test if the **means** of two groups are **different**
+
+--
 
 - Check documentation for **additional arguments** and test specifications
 
 ```{r t_test}
-# extracte body mass for male and female and run t test
-male <- penguins[penguins$sex == "male", "body_mass_g", drop = TRUE]
-female <- penguins[penguins$sex == "female", "body_mass_g", drop = TRUE]
+# extract male and femalae body mass values
+male <- penguins[penguins$sex == "male" & penguins$species == "Adelie", "body_mass_g", drop = TRUE]
+female <- penguins[penguins$sex == "female" & penguins$species == "Adelie", "body_mass_g", drop = TRUE]
+
+# compute t.test between male and female
 t.test(male, female, conf.level = 0.95) #<<
 
 ## same but a bit more elegant use formula syntax
-# t.test(body_mass_g ~ sex, data = penguins) #<<
+# t.test(body_mass_g ~ sex, data = penguins, subset = species == "Adelie") #<<
 ```
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 ### Linear regression .tiny[(1/2)]
 
-- `lm()` to fit **linear** regression model using formula syntax
+--
+
+- `lm()` to fit **linear regression** model using formula syntax
+
+--
 
 - `summary()` behaves different for _lm_ than for _data.frame_ object
 
+--
+
 ```{r lm}
 # fit linear model with variables bill length (dependent) and body mass (independent)
-mass_length_lm <- lm(formula = bill_length_mm ~ body_mass_g, data = penguins)
+mass_length_lm <- lm(formula = bill_length_mm ~ body_mass_g, data = penguins) #<<
 
 # get coefficients
-summary(mass_length_lm) #<<
+summary(mass_length_lm)
 ```
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 ### Linear regression .tiny[(2/2)]
 
-```{r predict_plot, echo = FALSE, fig.align = "center", out.width = "35%"}
+- `predict()` allows to predict dependent variable based on new independent values
+
+```{r predict_plot, echo = FALSE, fig.align = "center", out.width = "30%"}
 bill_predictions <- predict(mass_length_lm, newdata = data.frame(body_mass_g = seq(from = 3000, to = 6000, by = 250)))
 
 plot(penguins$body_mass_g, penguins$bill_length_mm)
@@ -631,11 +794,21 @@ bill_predictions
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # ANOVA
 
-- ANOVA to test if independent variable(s) affect numerical dependent variable (more than 2 groups)
+--
+
+- ANOVA to test if independent variable(s) affect numerical dependent variable (**more than 2 groups**)
+
+--
 
 - Use `*` instead of `+` for **interaction** term
+
+--
 
 ```{r anova}
 # test of flipper length depends on sex (2 levels) and species (3 levels)
@@ -647,12 +820,71 @@ summary(flipper_anova) #<<
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Tukey's post-hoc test
 
 - **Post-hoc test** to see difference between groups of independent variable levels 
 
 ```{r post_hoc}
 TukeyHSD(flipper_anova)
+```
+
+
+---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
+# Assumptions .tiny[(1/2)]
+
+.pull-left[
+#### Student's t-Test
+
+- Independence
+
+- Normality (`shapiro.test()`)
+
+- Homogeneity of variances (`var.test()`)
+
+- Random Sampling
+
+]
+
+.pull-right[
+#### Linear regression model
+
+- Independence
+
+- Normality (`shapiro.test()`)
+
+- Homoscedasticity (`plot(lm_object)`)
+
+- Linearity (`plot(y ~ x)`)
+]
+
+```{r normality}
+shapiro.test(male) #<<
+shapiro.test(female) #<<
+```
+
+---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
+# Assumptions .tiny[(2/2)]
+
+- `plot(mass_length_lm)` returns four plots helping with model assumptions
+
+```{r plot_lm, echo = FALSE, fig.align = "center", out.width = "45%"}
+par(mfrow = c(2, 2))
+plot(mass_length_lm)
+par(mfrow = c(1, 1))
 ```
 
 ---
@@ -665,7 +897,7 @@ background-size: 50%
 
 ## Exercise 2: Basic stats
 
-Work on [_exercise-section-2.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-2.Rmd) ...
+... work on [_exercise-section-2.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-2.Rmd) ...
 
 ---
 
@@ -675,9 +907,15 @@ class: inverse, left, bottom, clear, nonum
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # _base_ vs. _ggplot2_
 
-- _R_ has two major visualization environments, _base_ and _ggplot2_
+- _R_ has two major visualization environments: _base_ and _ggplot2_
+
+- Today, we are going to focus on _base_
 
 .pull-left[
 ```{r base_plot, echo = FALSE, fig.align = "center", out.width = "80%", fig.cap="base plot"}
@@ -716,11 +954,16 @@ ggplot(data = penguins, aes(x = body_mass_g, y = bill_length_mm, color = species
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Scatter plots .tiny[(1/3)]
+
+- Create simple scatter plot of bodymass vs. bill length
 
 .pull-left[
 ```{r scatter_dummy, eval = FALSE}
-# create simple scatter plot bodymass vs bill length
 plot(x = penguins$body_mass_g, 
      y = penguins$bill_length_mm, 
      type = "p", cex = 1.0, pch = 19, #<<
@@ -737,7 +980,13 @@ plot(x = penguins$body_mass_g, y = penguins$bill_length_mm,
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Scatter plots .tiny[(2/3)]
+
+- Points can be colored based on values
 
 .pull-left[
 ```{r scatter_color_dummy, eval = FALSE}
@@ -774,7 +1023,13 @@ plot(x = penguins$body_mass_g, y = penguins$bill_length_mm,
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Scatter plots .tiny[(3/3)]
+
+- Add other graphical objects to a plot
 
 .pull-left[
 ```{r scatter_lm_dummy, eval = FALSE}
@@ -792,7 +1047,8 @@ plot(x = penguins$body_mass_g,
 abline(lm_ttl) #<<
 
 # add legend
-legend("topleft", legend = c("Chinstrap", "Gentoo", 
+legend("topleft", legend = c("Chinstrap", #<<
+                             "Gentoo", 
                              "Adelie"), 
        col = color_palette, pch = 19)
 ```
@@ -819,11 +1075,18 @@ legend("topleft", legend = c("Chinstrap", "Gentoo", "Adelie"),
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Barplot vs. Boxplot
+
+--
 
 .pull-left[
 ```{r barplot, fig.align = "center", out.width = "55%"}
-df_sum <- dplyr::group_by(penguins, sex) %>% 
+df_sum <- dplyr::filter(penguins, species == "Adelie") %>% 
+  dplyr::group_by(sex) %>% 
   dplyr::summarise(mn = mean(flipper_length_mm), 
                    sd = sd(flipper_length_mm))
 
@@ -836,15 +1099,21 @@ arrows(x0 = p_bar, y0 = df_sum$mn - df_sum$sd,
 ```
 ]
 
+--
+
 .pull-right[
 ```{r boxplot, fig.align = "center", out.width = "65%"}
-boxplot(flipper_length_mm ~ sex, 
-        data = penguins)
+boxplot(flipper_length_mm ~ sex, data = penguins, 
+        subset = species == "Adelie")
 ```
 ]
 
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Histogram and Density .tiny[(1/3)]
 
@@ -861,6 +1130,10 @@ hist(penguins$bill_length_mm, breaks = 20)
 ]
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Histogram and Density .tiny[(2/3)]
 
@@ -896,6 +1169,10 @@ hist(adelie, breaks = 20, col = "#ff8200", add = TRUE)
 ]
 
 ---
+
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
 
 # Histogram and Density .tiny[(3/3)]
 
@@ -936,11 +1213,11 @@ class: inverse, left, bottom, clear, nonum
 
 background-image: url("img/data-viz.png")
 background-position: 50% 25%
-background-size: 50%
+background-size: 60%
 
 ## Exercise 3: Data vizualisation
 
-Work on [_exercise-section-3.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-3.Rmd) ...
+... work on [_exercise-section-3.Rmd_](https://github.com/mhesselbarth/introduction-r-workshop/blob/main/exercises/exercise-section-3.Rmd) ...
 
 ---
 
@@ -950,20 +1227,35 @@ class: inverse, left, bottom, clear, nonum
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Loops .tiny[(1/2)]
 
-- Code is **repeated** until conditions is met
+--
+
+- Code is **repeated** until condition is met
+
+--
 
 - `for` and `while` loops most common
 
-- Can be useful if vectorization is not possible, but **can be slow** if used incorrectly (never grow a vector, always pre-allocate!)
+--
+
+- Useful if vectorization is not possible, but **can be slow** if used incorrectly 
+
+- (Never grow a vector, always pre-allocate!)
+
+--
 
 .pull-left[
 ```{r loop}
-result_good <- numeric(length = 5)
+n <- 3
+result_good <- numeric(length = n)
 result_bad <- numeric()
 
-for (i in 1:5) {
+for (i in 1:n) {
   
   x <- i * 5
   
@@ -975,22 +1267,31 @@ for (i in 1:5) {
 ```
 ]
 
+--
+
 .pull-right[
 ```{loop_species, eval = FALSE}
 for (i in c("Chinstrap", "Gentoo", "Adelie")) {
   dplyr::filter(penguins, species == i) %>% 
-    ggplot(aes(x = body_mass_g, y = flipper_length_mm)) + 
-    geom_point() + 
-    labs(title = paste("Species:", i))
+    plot(body_mass_g ~ flipper_length_mm, 
+         data = ., main = paste("Species:", i))
 }
 ```
 ]
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # Loops .tiny[(2/2)]
 
+--
+
 - `apply()` (_matrices_) and `lapply()` (_vectors_, _data.frames_, _lists_) as alternative instead of loops
+
+--
 
 ```{r apply}
 penguins_mat <- as.matrix(penguins[, 3:6])
@@ -1008,10 +1309,16 @@ lapply(penguins_list, function(i){
 
 ---
 
+background-image: url("img/r-logo.png")
+background-position: 95% 5%
+background-size: 10%
+
 # `ifelse` statements
 
+--
+
 .pull-left[
-- Check if **logical statement** is true and run different parts of code
+- Check if **logical statement** is `TRUE/FALSE` and run different parts of code
 
 - General form: `if(conditions) {do this} else {do that}`
 
@@ -1019,6 +1326,8 @@ lapply(penguins_list, function(i){
 
 - Vectorized `ifelse()` function available
 ]
+
+--
 
 .pull-right[
 ```{r ifelse}
@@ -1049,7 +1358,7 @@ head(class)
 
 ---
 
-class: right
+class: right, inverse
 
 # Resources
 

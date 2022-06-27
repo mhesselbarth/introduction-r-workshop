@@ -12,7 +12,7 @@
 <meta name="author" content="Maximilian H.K. Hesselbarth" />
 
 
-<title>Data wrangling and stats</title>
+<title>Solution Section 2: Data wrangling and stats</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -380,7 +380,8 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Data wrangling and stats</h1>
+<h1 class="title toc-ignore">Solution Section 2: Data wrangling and
+stats</h1>
 <h4 class="author">Maximilian H.K. Hesselbarth</h4>
 <h4 class="date">2022-06-30 / 2022-07-01</h4>
 
@@ -388,109 +389,127 @@ pre code {
 
 
 <p>First, load all the packages you want to use. This includes
-<code>dplyr</code></p>
-<pre class="r"><code>library(dplyr)
-library(tibble)</code></pre>
-<p>First, import the <em>penguins_raw.csv</em> data and save it into an
+<code>dplyr</code>.</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<p>First, import the <em>penguins.csv</em> data and save it into an
 object. Use a text editor to check out the column separator and header
-information of the columns. If you want, try out to convert the
-<em>data.frame</em> as a <em>tibble</em> using <code>as_tibble()</code>
-from the <em>tibble</em> packages. A <em>tibble</em> is just a “fancy”
-<em>data.frame</em>, but basically the same thing.</p>
-<pre class="r"><code>file &lt;- here::here(&quot;data/penguins_raw.csv&quot;)
-penguins_raw &lt;- read.table(file, header = TRUE, sep = &quot;,&quot;) %&gt;% 
-  tibble::as_tibble()</code></pre>
-<p>Next, create three new columns in which you convert the culmen
-length, culmen depth and flipper length from mm to inch.</p>
-<pre class="r"><code>penguins_raw &lt;- dplyr::mutate(penguins_raw, 
-                              Culmen.Length..inch. = Culmen.Length..mm. / 25.4, 
-                              Culmen.Depth..inch. = Culmen.Depth..mm. / 25.4)
+information of the columns. Save the object using <em>camelCase</em>
+naming into <code>penguinsData</code>.</p>
+<pre class="r"><code>file &lt;- here::here(&quot;data/penguins.csv&quot;)
+penguinsData &lt;- read.table(file, header = TRUE, sep = &quot;,&quot;)</code></pre>
+<p>Next, create three new columns in which you convert the bill length,
+bill depth and flipper length from mm to inch.</p>
+<pre class="r"><code>penguinsData &lt;- dplyr::mutate(penguinsData, bill_length_inch = bill_length_mm / 25.4, 
+                             bill_depth_inch = bill_depth_mm / 25.4)
 
-penguins_raw$Flipper.Length..inch. &lt;- penguins_raw$Flipper.Length..mm. / 25.4</code></pre>
-<p>Now, create new <em>data.frame</em> in which only individuals with a
-body mass above the third quantile of all body masses are include.</p>
-<pre class="r"><code>penguins_large &lt;- dplyr::filter(penguins_raw, Body.Mass..g. &gt; quantile(Body.Mass..g., probs = 3/4, na.rm = TRUE))</code></pre>
+penguinsData$flipper_length_inch &lt;- penguinsData$flipper_length_mm / 25.4</code></pre>
+<p>Now, create a new <em>data.frame</em> that includes only individuals
+with a body mass above the third quantile (75%) of all body masses.</p>
+<pre class="r"><code>filter_vec &lt;- penguinsData$body_mass_g &gt; quantile(penguinsData$body_mass_g, probs = 3/4, na.rm = TRUE)
+
+penguinsLarge &lt;- penguinsData[filter_vec, ]</code></pre>
 <p>Next, calculate at least three descriptive statistics (e.g., mean,
 min, max, median, quantiles) of the flipper length. Try to calculate
-them for the whole data set, but also seperated by species.</p>
-<pre class="r"><code>dplyr::group_by(penguins_raw, Species) %&gt;% 
-  dplyr::summarise(min = min(Flipper.Length..mm., na.rm = TRUE), 
-                   median = median(Flipper.Length..mm., na.rm = TRUE), 
-                   max = max(Flipper.Length..mm., na.rm = TRUE))</code></pre>
+them for the whole data set, but also separated by species.</p>
+<pre class="r"><code>mean(penguinsData$flipper_length_mm, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 200.9152</code></pre>
+<pre class="r"><code>dplyr::group_by(penguinsData, species) %&gt;% 
+  dplyr::summarise(min = min(flipper_length_mm, na.rm = TRUE), 
+                   median = median(flipper_length_mm, na.rm = TRUE), 
+                   max = max(flipper_length_mm, na.rm = TRUE))</code></pre>
 <pre><code>## # A tibble: 3 × 4
-##   Species                                     min median   max
-##   &lt;chr&gt;                                     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
-## 1 Adelie Penguin (Pygoscelis adeliae)         172    190   210
-## 2 Chinstrap penguin (Pygoscelis antarctica)   178    196   212
-## 3 Gentoo penguin (Pygoscelis papua)           203    216   231</code></pre>
-<p>Look at the flipper length (in mm or inch) and test if there is a
-difference between a) male and female individuals and between the
-different species (two different analyis).</p>
-<pre class="r"><code>male &lt;- penguins_raw[penguins_raw$Sex == &quot;MALE&quot;, &quot;Flipper.Length..mm.&quot;]
-female &lt;- penguins_raw[penguins_raw$Sex == &quot;FEMALE&quot;, &quot;Flipper.Length..mm.&quot;]
-
-t.test(male, female)</code></pre>
+##   species     min median   max
+##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
+## 1 Adelie      172    190   210
+## 2 Chinstrap   178    196   212
+## 3 Gentoo      203    216   231</code></pre>
+<p>Test if there is a significant difference of the flipper length for
+any of the species between female and male individuals. Additionally,
+make sure that assumptions are fulfilled.</p>
+<pre class="r"><code>flipperMale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;male&quot;, &quot;flipper_length_mm&quot;]
+shapiro.test(flipperMale)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  flipperMale
+## W = 0.96184, p-value = 0.05452</code></pre>
+<pre class="r"><code>flipperFemale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;female&quot;, &quot;flipper_length_mm&quot;,]
+shapiro.test(flipperFemale)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  flipperFemale
+## W = 0.97395, p-value = 0.245</code></pre>
+<pre class="r"><code>t.test(formula = flipper_length_mm ~ sex, data = penguinsData, subset = species == &quot;Gentoo&quot;)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
-## data:  male and female
-## t = 4.8079, df = 325.28, p-value = 2.336e-06
-## alternative hypothesis: true difference in means is not equal to 0
+## data:  flipper_length_mm by sex
+## t = -9.9417, df = 106.69, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group female and group male is not equal to 0
 ## 95 percent confidence interval:
-##   4.219821 10.064811
+##  -10.595669  -7.072505
 ## sample estimates:
-## mean of x mean of y 
-##  204.5060  197.3636</code></pre>
-<pre class="r"><code>anova_species &lt;- aov(Flipper.Length..mm. ~ Species, data = penguins_raw)
+## mean in group female   mean in group male 
+##             212.7069             221.5410</code></pre>
+<p>Next, look at the flipper length (in mm or inch) and test if there is
+a difference between all three the species.</p>
+<pre class="r"><code>anova_species &lt;- aov(flipper_length_mm ~ species, data = penguinsData)
 
 TukeyHSD(anova_species)</code></pre>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
-## Fit: aov(formula = Flipper.Length..mm. ~ Species, data = penguins_raw)
+## Fit: aov(formula = flipper_length_mm ~ species, data = penguinsData)
 ## 
-## $Species
-##                                                                                    diff
-## Chinstrap penguin (Pygoscelis antarctica)-Adelie Penguin (Pygoscelis adeliae)  5.869887
-## Gentoo penguin (Pygoscelis papua)-Adelie Penguin (Pygoscelis adeliae)         27.233349
-## Gentoo penguin (Pygoscelis papua)-Chinstrap penguin (Pygoscelis antarctica)   21.363462
-##                                                                                     lwr
-## Chinstrap penguin (Pygoscelis antarctica)-Adelie Penguin (Pygoscelis adeliae)  3.586583
-## Gentoo penguin (Pygoscelis papua)-Adelie Penguin (Pygoscelis adeliae)         25.334376
-## Gentoo penguin (Pygoscelis papua)-Chinstrap penguin (Pygoscelis antarctica)   19.000841
-##                                                                                     upr
-## Chinstrap penguin (Pygoscelis antarctica)-Adelie Penguin (Pygoscelis adeliae)  8.153191
-## Gentoo penguin (Pygoscelis papua)-Adelie Penguin (Pygoscelis adeliae)         29.132323
-## Gentoo penguin (Pygoscelis papua)-Chinstrap penguin (Pygoscelis antarctica)   23.726084
-##                                                                               p adj
-## Chinstrap penguin (Pygoscelis antarctica)-Adelie Penguin (Pygoscelis adeliae)     0
-## Gentoo penguin (Pygoscelis papua)-Adelie Penguin (Pygoscelis adeliae)             0
-## Gentoo penguin (Pygoscelis papua)-Chinstrap penguin (Pygoscelis antarctica)       0</code></pre>
+## $species
+##                       diff       lwr       upr p adj
+## Chinstrap-Adelie  5.869887  3.586583  8.153191     0
+## Gentoo-Adelie    27.233349 25.334376 29.132323     0
+## Gentoo-Chinstrap 21.363462 19.000841 23.726084     0</code></pre>
+<pre class="r"><code># # Normality is not perfect 
+# penguinsData[penguinsData$species == &quot;Gentoo&quot;, &quot;flipper_length_mm&quot;] %&gt;%
+#   density(na.rm = TRUE) %&gt;%
+#   plot()</code></pre>
+<p>Pick one species and create a new <em>data.frame</em> including only
+the species you selected. Move one with this sub-selection for the rest
+of this exercise.</p>
+<pre class="r"><code>adelie &lt;- penguinsData[penguinsData$species == &quot;Adelie&quot;, ]</code></pre>
 <p>Last, pick two numeric columns of your choice and try to fit a linear
 regression model to the data. Is the relationship significant and what
-do the coeffiecents mean?</p>
-<pre class="r"><code>lm_model &lt;- lm(formula = Culmen.Length..mm. ~ Flipper.Length..mm., data = penguins_raw)
+do the coefficients mean?</p>
+<pre class="r"><code>lm_model &lt;- lm(formula = bill_length_mm ~ flipper_length_mm, data = adelie)
 
 summary(lm_model)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = Culmen.Length..mm. ~ Flipper.Length..mm., data = penguins_raw)
+## lm(formula = bill_length_mm ~ flipper_length_mm, data = adelie)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -8.5792 -2.6715 -0.5721  2.0148 19.1518 
+## -6.4322 -1.7610  0.0756  1.8573  6.6717 
 ## 
 ## Coefficients:
-##                     Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         -7.26487    3.20016   -2.27   0.0238 *  
-## Flipper.Length..mm.  0.25477    0.01589   16.03   &lt;2e-16 ***
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       13.58714    5.99572   2.266   0.0249 *  
+## flipper_length_mm  0.13269    0.03155   4.206 4.47e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 4.126 on 340 degrees of freedom
-##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.4306, Adjusted R-squared:  0.4289 
-## F-statistic: 257.1 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 2.527 on 149 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.1061, Adjusted R-squared:  0.1001 
+## F-statistic: 17.69 on 1 and 149 DF,  p-value: 4.465e-05</code></pre>
+<p>Can you predict new dependent values using the linear regression
+model? Try to create 25 random values within the range of the observed
+values for the species and use these to predict new values. (Hint: Have
+a look at <code>?runif()</code>).</p>
+<pre class="r"><code>randomValues &lt;- runif(n = 25, min = min(adelie$flipper_length_mm, na.rm = TRUE), 
+                        max = max(adelie$flipper_length_mm, na.rm = TRUE))
+
+predictValues &lt;- predict(object = lm_model, newdata = data.frame(flipper_length_mm = randomValues))
+
+predictionsAdelie &lt;- data.frame(species = &quot;Adelie&quot;, flipper_length_mm = randomValues, bill_length_mm = predictValues)</code></pre>
 
 
 

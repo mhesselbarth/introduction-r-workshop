@@ -12,7 +12,7 @@
 <meta name="author" content="Maximilian H.K. Hesselbarth" />
 
 
-<title>Exercise Basic introduction</title>
+<title>Solution Section 1: Basic introduction</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -380,7 +380,7 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Exercise Basic introduction</h1>
+<h1 class="title toc-ignore">Solution Section 1: Basic introduction</h1>
 <h4 class="author">Maximilian H.K. Hesselbarth</h4>
 <h4 class="date">2022-06-30 / 2022-07-01</h4>
 
@@ -392,14 +392,15 @@ pre code {
 <p>This a a <em>RMarkdown</em> file, which allows to combine text and
 <em>R</em> code chunks. You can “knit” this file as a
 <em>.html</em>-file by clicking the “knit” button in <em>RStudio</em>.
-Open the file with a web browser to see a rendered version.</p>
+Open the <em>.html</em>-file with a web browser to see a rendered
+version.</p>
 <p>Go through this document and try solve the exercise by adding code to
 the empty code chunks!</p>
 </div>
 <div id="running-basic-r-code" class="section level1">
 <h1>Running basic R code</h1>
 <p>First, run the following code. To do this, put the cursor into the
-line you want to run and either click the “Run” button or using the
+line you want to run and either click the “Run” button or use the
 shortcut &lt;CMD/STRG + ENTER&gt;. In order to run multiple lines of
 code, highlight all lines you want to run.</p>
 <pre class="r"><code>14 + 5.5
@@ -416,19 +417,23 @@ code, highlight all lines you want to run.</p>
 </div>
 <div id="create-objects" class="section level1">
 <h1>Create objects</h1>
-<p>Create one character vector storing the name of the following
-countries: Indonesia, Australia, Madagascar, Brazil, Mexico.</p>
-<p>Next create three more numeric with the number of endemic species <a href="https://ourworldindata.org/biodiversity-and-wildlife">Source</a>).</p>
+<p>Create a character vector (<code>c()</code>) storing the name of the
+following countries: Indonesia, Australia, Madagascar, Brazil, Mexico.
+Next create three more numeric vectors with the number of endemic
+species:</p>
 <ol style="list-style-type: decimal">
 <li>mammals: 295, 255, 213, 203, 152</li>
 <li>birds: 525, 359, 119, 254, 120</li>
 <li>amphibian: 213, 209, 312, 548, 284</li>
 </ol>
+<p><a href="https://ourworldindata.org/biodiversity-and-wildlife">Source:</a>.</p>
+<p>If you want, the numeric vectors could contain named objects using
+the country names (but not required).</p>
 <pre class="r"><code>countries &lt;- c(&quot;Indonesia&quot;, &quot;Australia&quot;, &quot;Madagascar&quot;, &quot;Brazil&quot;, &quot;Mexico&quot;)
 
 mammals &lt;- c(295, 255, 213, 203, 152)
-birds &lt;- c(525, 359, 119, 254, 120)
-amphibian &lt;- c(213, 209, 312, 548, 284)</code></pre>
+birds &lt;- c(Indonesia = 525, Australia = 359, Madagascar = 119, Brazil = 254, Mexico = 120)
+amphibian &lt;- c(&quot;Indonesia&quot; = 213, &quot;Australia&quot; = 209, &quot;Madagascar&quot; = 312, &quot;Brazil&quot; = 548, &quot;Mexico&quot; = 284)</code></pre>
 <p>Now, combine the three numeric vectors as a <code>matrix</code>, in
 which rows correspond to the different countries and the columns
 correspond to the different taxonomic groups (Hint: have a look at
@@ -452,28 +457,30 @@ cbind(countries, endemic_matrix)
 endemic_df &lt;- data.frame(countries, mammals, birds, amphibian)</code></pre>
 <p>Last, use either the <code>matrix</code> or the
 <code>data.frame</code> and subset the row with the highest number of
-amphibian. You have several options to do this. Have a look at e.g.,
+amphibians. You have several options to do this. Have a look at e.g.,
 <code>max()</code> or <code>which()</code></p>
 <pre class="r"><code>endemic_df[endemic_df$amphibian == max(endemic_df$amphibian), ]
-##   countries mammals birds amphibian
-## 4    Brazil     203   254       548
+##        countries mammals birds amphibian
+## Brazil    Brazil     203   254       548
 
 amphibian_max &lt;- which(endemic_df$amphibian == max(amphibian))
 endemic_df[amphibian_max, ]
-##   countries mammals birds amphibian
-## 4    Brazil     203   254       548
+##        countries mammals birds amphibian
+## Brazil    Brazil     203   254       548
 
 head(endemic_df[order(amphibian, decreasing = TRUE), ], n = 1)
-##   countries mammals birds amphibian
-## 4    Brazil     203   254       548</code></pre>
+##        countries mammals birds amphibian
+## Brazil    Brazil     203   254       548</code></pre>
 </div>
 <div id="functions" class="section level1">
 <h1>Functions</h1>
 <p>You already used a few functions up to here. To get a bit more used
 to this, calculate the mean number of species per taxonomic group and
 round the result to one digit. For this, use <code>mean()</code> and
-<code>round()</code>. Bonus point if you can also calculate the mean
-number of endemic species <strong>per country</strong>.</p>
+<code>round()</code>. Square brackets <code>[row,col]</code> are used to
+index <em>matrices</em> and <em>data.frames</em>.</p>
+<p>Bonus point if you can also calculate the mean number of endemic
+species <strong>per country</strong>.</p>
 <pre class="r"><code>mean(endemic_matrix[, 1])
 ## [1] 223.6
 mean(endemic_matrix[, 2])
@@ -491,6 +498,7 @@ and standardizes each element by dividing it by the maximum value and
 multiplied by 100. Apply the functions to one or several of the endemic
 species counts. Remember, functions can be created using
 <code>function()</code> and defining arguments and function body.</p>
+<p>What happens if you apply the function to the countries vector?</p>
 <pre class="r"><code>rel_species &lt;- function(input, digits = 2) {
   
   input_max &lt;- max(input)
@@ -500,7 +508,9 @@ species counts. Remember, functions can be created using
   }
 
 rel_species(mammals, 3)
-## [1] 100.000  86.441  72.203  68.814  51.525</code></pre>
+## [1] 100.000  86.441  72.203  68.814  51.525
+tryCatch(expr = rel_species(countries, 3), error = function(e) print(e))
+## &lt;simpleError in input/input_max: non-numeric argument to binary operator&gt;</code></pre>
 </div>
 
 

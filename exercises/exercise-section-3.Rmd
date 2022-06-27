@@ -1,5 +1,5 @@
 ---
-title: "Data vizualisation"
+title: "Exercise Section 3: Data vizualisation"
 author: "Maximilian H.K. Hesselbarth"
 date: "2022-06-30 / 2022-07-01"
 output:
@@ -15,33 +15,41 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 For this exercise, we are going to use the already cleaned data set from the _palmerpenguins_ package again. Thus, load all packages you need first. 
 
-```{r libs, message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE}
 
-# Add code here
+# Add code here...
 
 ```
 
 Create a scatter plot using the two numerical variables you picked in the last exercise to fit a linear regression model. Plot the data (for all species) using point colors that refer to the island the data was collected. Use a solid triangle as point shape. 
 
-```{r, scatter}
+```{r}
 
-# Add code here
-
-```
-
-Now fit the linear regression model again, and add the regression line to the figure.
-
-```{r lm}
-
-# Add code here
+# Add code here...
 
 ```
 
-Create a boxplot of the difference between islands of the body size. Try to also add the raw data points to the boxplot. 
+Now fit the linear regression model again and add the regression line to the figure. Add a line for the whole data set, but also for all islands individually.
 
 ```{r}
 
-# Add code here
+# Add code here...
+
+```
+
+Create a boxplot for the difference between islands of the body size. Try to also add the raw data points to the boxplot. 
+
+```{r}
+
+# Add code here...
+
+```
+
+Compare the boxplot visualization to a histogram. Which one do you like more to show differences between the islands? What affect do different `breaks` have on the figure?
+
+```{r}
+
+# Add code here...
 
 ```
 
@@ -49,6 +57,6 @@ Try to find out how to export the at least one figure as a PDF file.
 
 ```{r eval = FALSE}
 
-# Add code here
+# Add code here...
 
 ```

@@ -1,5 +1,5 @@
 ---
-title: "Data wrangling and stats"
+title: "Exercise Section 2: Data wrangling and stats"
 author: "Maximilian H.K. Hesselbarth"
 date: "2022-06-30 / 2022-07-01"
 output:
@@ -13,66 +13,82 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-First, load all the packages you want to use. This includes `dplyr`
+First, load all the packages you want to use. This includes `dplyr`.
 
-```{r libs, message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE}
 
-# Add code here
-
-```
-
-First, import the _penguins_raw.csv_ data and save it into an object. Use a text editor to check out the column separator and header information of the columns. If you want, try out to convert the _data.frame_ as a _tibble_ using `as_tibble()` from the _tibble_ packages. A _tibble_ is just a "fancy" _data.frame_, but basically the same thing.
-
-```{r read_table}
-
-# Add code here
+# Add code here...
 
 ```
 
-Next, create three new columns in which you convert the culmen length, culmen depth and flipper length from mm to inch. 
+First, import the _penguins.csv_ data and save it into an object. Use a text editor to check out the column separator and header information of the columns. Save the object using _camelCase_ naming into `penguinsData`.
 
-```{r convert_col}
+```{r}
 
-# Add code here
+# Add code here...
 
 ```
 
-Now, create new _data.frame_ in which only individuals with a body mass above the third quantile of all body masses are include. 
+Next, create three new columns in which you convert the bill length, bill depth and flipper length from mm to inch. 
 
-```{r quantile_filter}
+```{r}
 
-# Add code here
+# Add code here...
+
+```
+
+Now, create a new _data.frame_ that includes only individuals with a body mass above the third quantile (75%) of all body masses. 
+
+```{r}
+
+# Add code here...
 
 ```
 
 Next, calculate at least three descriptive statistics (e.g., mean, min, max, median, quantiles) of the flipper length. Try to calculate them for the whole data set, but also separated by species. 
 
-```{r descriptive}
+```{r}
 
-# Add code here
-
-```
-
-Look at the flipper length (in mm or inch) and test if there is a difference between between the different species.
-
-```{r post_hoc}
-
-# Add code here
+# Add code here...
 
 ```
 
-Pick one species and create a new _data.frame_ containing only the species you selected. Continuous with this sub-selection for the rest of this exercise.
+Test if there is a significant difference of the flipper length for any of the species between female and male individuals. Additionally, make sure that assumptions are fulfilled.
 
-```{r t_test}
+```{r}
 
-# Add code here
+# Add code here...
+
+```
+
+Next, look at the flipper length (in mm or inch) and test if there is a difference between all three the species.
+
+```{r}
+
+# Add code here...
+
+```
+
+Pick one species and create a new _data.frame_ including only the species you selected. Move one  with this sub-selection for the rest of this exercise.
+
+```{r}
+
+# Add code here...
 
 ```
 
 Last, pick two numeric columns of your choice and try to fit a linear regression model to the data. Is the relationship significant and what do the coefficients mean?
 
-```{r lm}
+```{r}
 
-# Add code here
+# Add code here...
+
+```
+
+Can you predict new dependent values using the linear regression model? Try to create 25 random values within the range of the observed values for the species and use these to predict new values. (Hint: Have a look at `?runif()`).
+
+```{r}
+
+# Add code here...
 
 ```

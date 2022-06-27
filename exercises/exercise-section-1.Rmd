@@ -1,5 +1,5 @@
 ---
-title: "Exercise Basic introduction"
+title: "Exercise Section 1: Basic introduction"
 author: "Maximilian H.K. Hesselbarth"
 date: "2022-06-30 / 2022-07-01"
 output:
@@ -15,15 +15,15 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 # RMarkdown
 
-This a a _RMarkdown_ file, which allows to combine text and _R_ code chunks. You can "knit" this file as a _.html_-file by clicking the "knit" button in _RStudio_. Open the file with a web browser to see a rendered version.
+This a a _RMarkdown_ file, which allows to combine text and _R_ code chunks. You can "knit" this file as a _.html_-file by clicking the "knit" button in _RStudio_. Open the _.html_-file with a web browser to see a rendered version.
 
 Go through this document and try solve the exercise by adding code to the empty code chunks!
 
 # Running basic R code
 
-First, run the following code. To do this, put the cursor into the line you want to run and either click the "Run" button or using the shortcut <CMD/STRG + ENTER>. In order to run multiple lines of code, highlight all lines you want to run.
+First, run the following code. To do this, put the cursor into the line you want to run and either click the "Run" button or use the shortcut <CMD/STRG + ENTER>. In order to run multiple lines of code, highlight all lines you want to run.
 
-```{r calculator}
+```{r}
 14 + 5.5
 
 (23 - 5) / (4 * 5) ^ 2
@@ -35,17 +35,19 @@ First, run the following code. To do this, put the cursor into the line you want
 
 # Create objects
 
-Create one character vector storing the name of the following countries: Indonesia, Australia, Madagascar, Brazil, Mexico. 
-
-Next create three more numeric with the number of endemic species [Source](https://ourworldindata.org/biodiversity-and-wildlife)).
+Create a character vector (`c()`) storing the name of the following countries: Indonesia, Australia, Madagascar, Brazil, Mexico. Next create three more numeric vectors with the number of endemic species:
 
 1) mammals: 295, 255, 213, 203, 152
 2) birds: 525, 359, 119, 254, 120
 3) amphibian:  213, 209, 312, 548, 284
 
-```{r objects}
+[Source:](https://ourworldindata.org/biodiversity-and-wildlife).
 
-# Add code here
+If you want, the numeric vectors could contain named objects using the country names (but not required).
+
+```{r}
+
+# Add code here...
 
 ```
 
@@ -55,34 +57,38 @@ Alternatively, create a `data.frame()` combining all four vectors. What's the di
 
 (Tip: You can always use `class(<object_name>)` to check data structure of an object.)
 
-```{r matrix}
+```{r}
 
-# Add code here
+# Add code here...
 
 ```
 
-Last, use either the `matrix` or the `data.frame` and subset the row with the highest number of amphibian. You have several options to do this. Have a look at e.g., `max()` or `which()`
+Last, use either the `matrix` or the `data.frame` and subset the row with the highest number of amphibians. You have several options to do this. Have a look at e.g., `max()` or `which()`
 
-```{r subset}
+```{r}
 
-# Add code here
+# Add code here...
 
 ```
 
 # Functions
 
-You already used a few functions up to here. To get a bit more used to this, calculate the mean number of species per taxonomic group and round the result to one digit. For this, use `mean()` and `round()`. Bonus point if you can also calculate the mean number of endemic species **per country**.
+You already used a few functions up to here. To get a bit more used to this, calculate the mean number of species per taxonomic group and round the result to one digit. For this, use `mean()` and `round()`. Square brackets `[row,col]` are used to index _matrices_ and _data.frames_.
 
-```{r mean_round}
+Bonus point if you can also calculate the mean number of endemic species **per country**.
 
-# Add code here
+```{r}
+
+# Add code here...
 
 ```
 
 Now, create your own function that takes a vector as input argument and standardizes each element by dividing it by the maximum value and multiplied by 100. Apply the functions to one or several of the endemic species counts. Remember, functions can be created using `function()` and defining arguments and function body.
 
-```{r function}
+What happens if you apply the function to the countries vector?
 
-# Add code here
+```{r}
+
+# Add code here...
 
 ```
