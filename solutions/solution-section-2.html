@@ -388,15 +388,23 @@ stats</h1>
 </div>
 
 
+<div id="loading-libraries" class="section level1">
+<h1>Loading libraries</h1>
 <p>First, load all the packages you want to use. This includes
 <code>dplyr</code>.</p>
 <pre class="r"><code>library(dplyr)</code></pre>
+</div>
+<div id="import-data" class="section level1">
+<h1>Import data</h1>
 <p>First, import the <em>penguins.csv</em> data and save it into an
 object. Use a text editor to check out the column separator and header
 information of the columns. Save the object using <em>camelCase</em>
 naming into <code>penguinsData</code>.</p>
 <pre class="r"><code>file &lt;- here::here(&quot;data/penguins.csv&quot;)
 penguinsData &lt;- read.table(file, header = TRUE, sep = &quot;,&quot;)</code></pre>
+</div>
+<div id="wrangle-data" class="section level1">
+<h1>Wrangle data</h1>
 <p>Next, create three new columns in which you convert the bill length,
 bill depth and flipper length from mm to inch.</p>
 <pre class="r"><code>penguinsData &lt;- dplyr::mutate(penguinsData, bill_length_inch = bill_length_mm / 25.4, 
@@ -408,6 +416,9 @@ with a body mass above the third quantile (75%) of all body masses.</p>
 <pre class="r"><code>filter_vec &lt;- penguinsData$body_mass_g &gt; quantile(penguinsData$body_mass_g, probs = 3/4, na.rm = TRUE)
 
 penguinsLarge &lt;- penguinsData[filter_vec, ]</code></pre>
+</div>
+<div id="descriptive-statistics" class="section level1">
+<h1>Descriptive statistics</h1>
 <p>Next, calculate at least three descriptive statistics (e.g., mean,
 min, max, median, quantiles) of the flipper length. Try to calculate
 them for the whole data set, but also separated by species.</p>
@@ -424,6 +435,9 @@ dplyr::group_by(penguinsData, species) %&gt;%
 ## 1 Adelie      172    190   210
 ## 2 Chinstrap   178    196   212
 ## 3 Gentoo      203    216   231</code></pre>
+</div>
+<div id="t-test-and-anova" class="section level1">
+<h1>t-Test and ANOVA</h1>
 <p>Test if there is a significant difference of the flipper length for
 any of the species between female and male individuals. Additionally,
 make sure that assumptions are fulfilled.</p>
@@ -475,6 +489,9 @@ TukeyHSD(anova_species)
 # penguinsData[penguinsData$species == &quot;Gentoo&quot;, &quot;flipper_length_mm&quot;] %&gt;%
 #   density(na.rm = TRUE) %&gt;%
 #   plot()</code></pre>
+</div>
+<div id="linear-regression" class="section level1">
+<h1>Linear regression</h1>
 <p>Pick one species and create a new <em>data.frame</em> including only
 the species you selected. Move one with this sub-selection for the rest
 of this exercise.</p>
@@ -514,6 +531,7 @@ a look at <code>?runif()</code>).</p>
 predictValues &lt;- predict(object = lm_model, newdata = data.frame(flipper_length_mm = randomValues))
 
 predictionsAdelie &lt;- data.frame(species = &quot;Adelie&quot;, flipper_length_mm = randomValues, bill_length_mm = predictValues)</code></pre>
+</div>
 
 
 

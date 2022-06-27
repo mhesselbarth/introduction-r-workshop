@@ -10,7 +10,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
 
 # RMarkdown
@@ -62,6 +62,8 @@ Alternatively, create a `data.frame()` combining all four vectors. What's the di
 # Add code here...
 
 ```
+
+# Indexing
 
 Last, use either the `matrix` or the `data.frame` and subset the row with the highest number of amphibians. You have several options to do this. Have a look at e.g., `max()` or `which()`
 

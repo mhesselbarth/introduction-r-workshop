@@ -10,8 +10,10 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, fig.align = "center")
 ```
+
+# Load libraries
 
 For this exercise, we are going to use the already cleaned data set from the _palmerpenguins_ package again. Thus, load all packages you need first. 
 
@@ -20,6 +22,8 @@ For this exercise, we are going to use the already cleaned data set from the _pa
 # Add code here...
 
 ```
+
+# Scatter plot
 
 Create a scatter plot using the two numerical variables you picked in the last exercise to fit a linear regression model. Plot the data (for all species) using point colors that refer to the island the data was collected. Use a solid triangle as point shape. 
 
@@ -37,6 +41,8 @@ Now fit the linear regression model again and add the regression line to the fig
 
 ```
 
+# Box plot and Histogram
+
 Create a boxplot for the difference between islands of the body size. Try to also add the raw data points to the boxplot. 
 
 ```{r}
@@ -52,6 +58,8 @@ Compare the boxplot visualization to a histogram. Which one do you like more to 
 # Add code here...
 
 ```
+
+# Exporting
 
 Try to find out how to export the at least one figure as a PDF file. 
 

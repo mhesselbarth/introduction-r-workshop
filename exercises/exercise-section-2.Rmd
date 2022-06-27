@@ -1,5 +1,5 @@
 ---
-title: "Exercise Section 2: Data wrangling and stats"
+title: "Solution Section 2: Data wrangling and stats"
 author: "Maximilian H.K. Hesselbarth"
 date: "2022-06-30 / 2022-07-01"
 output:
@@ -10,8 +10,10 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
+
+# Loading libraries
 
 First, load all the packages you want to use. This includes `dplyr`.
 
@@ -21,6 +23,8 @@ First, load all the packages you want to use. This includes `dplyr`.
 
 ```
 
+# Import data
+
 First, import the _penguins.csv_ data and save it into an object. Use a text editor to check out the column separator and header information of the columns. Save the object using _camelCase_ naming into `penguinsData`.
 
 ```{r}
@@ -28,6 +32,8 @@ First, import the _penguins.csv_ data and save it into an object. Use a text edi
 # Add code here...
 
 ```
+
+# Wrangle data
 
 Next, create three new columns in which you convert the bill length, bill depth and flipper length from mm to inch. 
 
@@ -45,6 +51,8 @@ Now, create a new _data.frame_ that includes only individuals with a body mass a
 
 ```
 
+# Descriptive statistics
+
 Next, calculate at least three descriptive statistics (e.g., mean, min, max, median, quantiles) of the flipper length. Try to calculate them for the whole data set, but also separated by species. 
 
 ```{r}
@@ -52,6 +60,8 @@ Next, calculate at least three descriptive statistics (e.g., mean, min, max, med
 # Add code here...
 
 ```
+
+# t-Test and ANOVA
 
 Test if there is a significant difference of the flipper length for any of the species between female and male individuals. Additionally, make sure that assumptions are fulfilled.
 
@@ -68,6 +78,8 @@ Next, look at the flipper length (in mm or inch) and test if there is a differen
 # Add code here...
 
 ```
+
+# Linear regression
 
 Pick one species and create a new _data.frame_ including only the species you selected. Move one  with this sub-selection for the rest of this exercise.
 
