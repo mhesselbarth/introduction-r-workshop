@@ -411,13 +411,14 @@ penguinsLarge &lt;- penguinsData[filter_vec, ]</code></pre>
 <p>Next, calculate at least three descriptive statistics (e.g., mean,
 min, max, median, quantiles) of the flipper length. Try to calculate
 them for the whole data set, but also separated by species.</p>
-<pre class="r"><code>mean(penguinsData$flipper_length_mm, na.rm = TRUE)</code></pre>
-<pre><code>## [1] 200.9152</code></pre>
-<pre class="r"><code>dplyr::group_by(penguinsData, species) %&gt;% 
+<pre class="r"><code>mean(penguinsData$flipper_length_mm, na.rm = TRUE)
+## [1] 200.9152
+
+dplyr::group_by(penguinsData, species) %&gt;% 
   dplyr::summarise(min = min(flipper_length_mm, na.rm = TRUE), 
                    median = median(flipper_length_mm, na.rm = TRUE), 
-                   max = max(flipper_length_mm, na.rm = TRUE))</code></pre>
-<pre><code>## # A tibble: 3 × 4
+                   max = max(flipper_length_mm, na.rm = TRUE))
+## # A tibble: 3 × 4
 ##   species     min median   max
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1 Adelie      172    190   210
@@ -427,21 +428,23 @@ them for the whole data set, but also separated by species.</p>
 any of the species between female and male individuals. Additionally,
 make sure that assumptions are fulfilled.</p>
 <pre class="r"><code>flipperMale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;male&quot;, &quot;flipper_length_mm&quot;]
-shapiro.test(flipperMale)</code></pre>
-<pre><code>## 
+shapiro.test(flipperMale)
+## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  flipperMale
-## W = 0.96184, p-value = 0.05452</code></pre>
-<pre class="r"><code>flipperFemale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;female&quot;, &quot;flipper_length_mm&quot;,]
-shapiro.test(flipperFemale)</code></pre>
-<pre><code>## 
+## W = 0.96184, p-value = 0.05452
+
+flipperFemale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;female&quot;, &quot;flipper_length_mm&quot;,]
+shapiro.test(flipperFemale)
+## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  flipperFemale
-## W = 0.97395, p-value = 0.245</code></pre>
-<pre class="r"><code>t.test(formula = flipper_length_mm ~ sex, data = penguinsData, subset = species == &quot;Gentoo&quot;)</code></pre>
-<pre><code>## 
+## W = 0.97395, p-value = 0.245
+
+t.test(formula = flipper_length_mm ~ sex, data = penguinsData, subset = species == &quot;Gentoo&quot;)
+## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  flipper_length_mm by sex
@@ -456,8 +459,8 @@ shapiro.test(flipperFemale)</code></pre>
 a difference between all three the species.</p>
 <pre class="r"><code>anova_species &lt;- aov(flipper_length_mm ~ species, data = penguinsData)
 
-TukeyHSD(anova_species)</code></pre>
-<pre><code>##   Tukey multiple comparisons of means
+TukeyHSD(anova_species)
+##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
 ## Fit: aov(formula = flipper_length_mm ~ species, data = penguinsData)
@@ -466,8 +469,9 @@ TukeyHSD(anova_species)</code></pre>
 ##                       diff       lwr       upr p adj
 ## Chinstrap-Adelie  5.869887  3.586583  8.153191     0
 ## Gentoo-Adelie    27.233349 25.334376 29.132323     0
-## Gentoo-Chinstrap 21.363462 19.000841 23.726084     0</code></pre>
-<pre class="r"><code># # Normality is not perfect 
+## Gentoo-Chinstrap 21.363462 19.000841 23.726084     0
+
+# # Normality is not perfect 
 # penguinsData[penguinsData$species == &quot;Gentoo&quot;, &quot;flipper_length_mm&quot;] %&gt;%
 #   density(na.rm = TRUE) %&gt;%
 #   plot()</code></pre>
@@ -480,8 +484,8 @@ regression model to the data. Is the relationship significant and what
 do the coefficients mean?</p>
 <pre class="r"><code>lm_model &lt;- lm(formula = bill_length_mm ~ flipper_length_mm, data = adelie)
 
-summary(lm_model)</code></pre>
-<pre><code>## 
+summary(lm_model)
+## 
 ## Call:
 ## lm(formula = bill_length_mm ~ flipper_length_mm, data = adelie)
 ## 
