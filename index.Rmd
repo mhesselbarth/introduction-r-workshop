@@ -103,7 +103,7 @@ knitr::include_graphics("img/hex-logos.png")
 ]
 
 .pull-right[
-- Member of the [Coastal Ecology and Conservation Lab](https://www.jacoballgeier.com)
+- Member of the [Coastal Ecology and Conservation Lab](https://www.jacoballgeier.com) .small[("Allgeier Lab")]
 
 - Working on **individual-based simulation modelling**, **landscape ecology**, **point pattern analysis** and spatial data in general
 
