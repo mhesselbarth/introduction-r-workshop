@@ -2,7 +2,7 @@
 title: " Introduction to R" 
 output:
   xaringan::moon_reader:
-    self_contained: false
+    self_contained: true
     css: xaringan-themer.css
     lib_dir: libs
     seal: false
@@ -77,7 +77,7 @@ class: inverse, center, middle, nonum
 ]
 
 .pull-right[
-```{r first_then, echo=FALSE, fig.align='center', out.width='85%'}
+```{r first_then, echo=FALSE, fig.align = "center", out.width = "85%"}
 knitr::include_graphics("img/first-then.png")
 ```
 
@@ -168,10 +168,35 @@ background-size: 15%
 
 - Includes syntax-highlighting, auto-completion, figure and help panels, ...
 
-```{r rstudio, echo=FALSE, fig.align='center', out.width='60%'}
+--
+
+- Allows to use _RStudio_ projects (_.Rproj_) to organize related scripts/figure/data ...
+
+```{r rstudio, echo=FALSE, fig.align = "center", out.width = "55%"}
 knitr::include_graphics("img/rstudio.png")
 ```
 
+---
+
+class: middle
+
+background-image: url("img/rstudio-logo.png")
+background-position: 95% 5%
+background-size: 15%
+
+# ...some advice...
+
+.pull-left[
+```{r rm, echo=FALSE, fig.align = "center", out.width= " 100%" }
+knitr::include_graphics("img/set-fire-rm.png")
+```
+]
+
+.pull-right[
+```{r workspace, echo=FALSE, fig.align = "center", out.width= " 100%" }
+knitr::include_graphics("img/workspace.png")
+```
+]
 
 ---
 
@@ -468,11 +493,27 @@ background-size: 10%
 
 # Functions .tiny[(2/3)]
 
-.pull-left[
-- Use e.g., `?mean` to open **documentation** for help
+--
 
+.pull-left[
 - Very **powerful resource** to understand and apply functions
+
+- **Error messages** often give hints whats wrong
+
+```{r error, error = TRUE}
+min(penguins$sex)
+```
+
+- Read and decided what to do with **warning messages**
+
+```{r warning}
+mean(penguins$sex)
+```
+
+- Use e.g., `?function_name` to open **documentation** for help (or highlight + F1)
 ]
+
+--
 
 .pull-right[
 ```{r help_mean, echo = FALSE, fig.align = "center", out.width = "100%"}
@@ -552,6 +593,10 @@ background-size: 10%
 - _readxl_ packages to import **Excel** files
 
 --
+
+--
+
+- `getwd()`/`setwd()` for current working directory (or better `here()` frome _here_ package)
 
 ```{r read_data, warning = FALSE, message = FALSE}
 # import tabular text data file (most robust)
