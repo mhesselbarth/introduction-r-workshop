@@ -7,5 +7,5 @@
 
 Slides are available here: [https://mhesselbarth.github.io/introduction-r-workshop/](https://mhesselbarth.github.io/introduction-r-workshop/)
 
-The goal of introduction-r-workshop is to ...
+Workshpop for incoming Master Students at [University of Michigan EEB](https://lsa.umich.edu/eeb) Department.
 
