@@ -392,7 +392,8 @@ stats</h1>
 <h1>Loading libraries</h1>
 <p>First, load all the packages you want to use. This includes
 <code>dplyr</code>.</p>
-<pre class="r"><code>library(dplyr)</code></pre>
+<pre class="r"><code>library(dplyr)
+library(palmerpenguins)</code></pre>
 </div>
 <div id="import-data" class="section level1">
 <h1>Import data</h1>
@@ -401,14 +402,17 @@ object. Use a text editor to check out the column separator and header
 information of the columns. Save the object using <em>camelCase</em>
 naming into <code>penguinsData</code>.</p>
 <pre class="r"><code>file &lt;- here::here(&quot;data/penguins.csv&quot;)
-penguinsData &lt;- read.table(file, header = TRUE, sep = &quot;,&quot;)</code></pre>
+penguinsData &lt;- read.table(file, header = TRUE, sep = &quot;,&quot;)
+
+# use data directly from package
+penguinsData &lt;- as.data.frame(penguins)</code></pre>
 </div>
 <div id="wrangle-data" class="section level1">
 <h1>Wrangle data</h1>
 <p>Next, create three new columns in which you convert the bill length,
 bill depth and flipper length from mm to inch.</p>
 <pre class="r"><code>penguinsData &lt;- dplyr::mutate(penguinsData, bill_length_inch = bill_length_mm / 25.4, 
-                             bill_depth_inch = bill_depth_mm / 25.4)
+                              bill_depth_inch = bill_depth_mm / 25.4)
 
 penguinsData$flipper_length_inch &lt;- penguinsData$flipper_length_mm / 25.4</code></pre>
 <p>Now, create a new <em>data.frame</em> that includes only individuals
@@ -431,7 +435,7 @@ dplyr::group_by(penguinsData, species) %&gt;%
                    max = max(flipper_length_mm, na.rm = TRUE))
 ## # A tibble: 3 × 4
 ##   species     min median   max
-##   &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
+##   &lt;fct&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
 ## 1 Adelie      172    190   210
 ## 2 Chinstrap   178    196   212
 ## 3 Gentoo      203    216   231</code></pre>
@@ -441,7 +445,7 @@ dplyr::group_by(penguinsData, species) %&gt;%
 <p>Test if there is a significant difference of the flipper length for
 any of the species between female and male individuals. Additionally,
 make sure that assumptions are fulfilled.</p>
-<pre class="r"><code>flipperMale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;male&quot;, &quot;flipper_length_mm&quot;]
+<pre class="r"><code>flipperMale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;male&quot;, &quot;flipper_length_mm&quot;, drop = TRUE]
 shapiro.test(flipperMale)
 ## 
 ##  Shapiro-Wilk normality test
@@ -449,13 +453,35 @@ shapiro.test(flipperMale)
 ## data:  flipperMale
 ## W = 0.96184, p-value = 0.05452
 
-flipperFemale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;female&quot;, &quot;flipper_length_mm&quot;,]
+# convert to data.frame first
+as.data.frame(penguinsData)[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;male&quot;, &quot;flipper_length_mm&quot;]
+##  [1] 230 218 215 219 215 216 213 217 221 222 218 215 215  NA 215 220 222 230 220
+## [20] 219 208 225 216 222 225 215 220 225 220 220 224 221 231 230  NA 229 223 221
+## [39] 221 230 220 223 221 224 228 218 230 228 224 226 216 225 228 228  NA 215 219
+## [58] 209 229 230 230  NA 222  NA 222 213
+
+
+flipperFemale &lt;- penguinsData[penguinsData$species == &quot;Gentoo&quot; &amp; penguinsData$sex == &quot;female&quot;, &quot;flipper_length_mm&quot;, drop = TRUE]
 shapiro.test(flipperFemale)
 ## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  flipperFemale
 ## W = 0.97395, p-value = 0.245
+
+# run t-test two different ways, same results
+t.test(flipperMale, flipperFemale)
+## 
+##  Welch Two Sample t-test
+## 
+## data:  flipperMale and flipperFemale
+## t = 9.9417, df = 106.69, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##   7.072505 10.595669
+## sample estimates:
+## mean of x mean of y 
+##  221.5410  212.7069
 
 t.test(formula = flipper_length_mm ~ sex, data = penguinsData, subset = species == &quot;Gentoo&quot;)
 ## 

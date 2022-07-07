@@ -4,3 +4,4 @@
 .Ruserdata
 exercises/*.html
 solutions/*.Rmd
+*.zip
